@@ -40,7 +40,7 @@ def get_all_events():
     regular_event_markets = _get_markets_from_kalshi_api()
     with open("markets-kalshi-regular.json", "w") as f:
         json.dump(regular_event_markets, f, indent=2)
-        pprint(f"Total events: {len(regular_event_markets)}")
+        pprint(f"Total markets: {len(regular_event_markets)}")
     return regular_event_markets
 
 if __name__ == "__main__":
