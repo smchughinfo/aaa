@@ -2,7 +2,7 @@ import requests
 from pprint import pprint
 import json
 
-def get_markets(offset, limit=50):
+def _get_markets_from_polymarket_api(offset, limit=50):
     try:
         print(f'Getting markets at offset {offset}.')
         url = f'https://gamma-api.polymarket.com/events?order=id&ascending=false&closed=false&limit={limit}&offset={offset}'
@@ -28,23 +28,26 @@ def get_markets(offset, limit=50):
             'question': m['question'],
             'bestBid': m.get('bestBid'),
             'bestAsk': m.get('bestAsk'),
-            'outcomes': m['outcomes'],
             'endDate': m['endDateIso'],
             'id': m['id']    
         })
     
     return markets
 
-markets = []
-offset = 0
-while True:
-    page = get_markets(offset)
-    if page is None or len(page) == 0: 
-        break
-    markets.extend(page)
-    offset += 50
+def get_markets():
+    markets = []
+    offset = 0
+    while True:
+        page = _get_markets_from_polymarket_api(offset)
+        if page is None or len(page) == 0: 
+            break
+        markets.extend(page)
+        offset += 50
 
-with open("markets.json", 'w') as f:
-    json.dump(markets, f, indent=2)
+    with open("markets-polymarket.json", 'w') as f:
+        json.dump(markets, f, indent=2)
 
-print(f"Total markets collected: {len(markets)}")
+    print(f"Total markets collected: {len(markets)}")
+
+if __name__ == "__main__":
+    get_markets()
