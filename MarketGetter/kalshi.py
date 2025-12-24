@@ -17,7 +17,7 @@ def _get_markets_from_kalshi_api(all_markets = [], cursor = None):
     for event in events["events"]:
         for market in event["markets"]:
             reduced_market = reduce_market(event, market)
-            all_markets.extend(reduced_market)
+            all_markets.append(reduced_market)
 
     if cursor:
         _get_markets_from_kalshi_api(all_markets, cursor)
@@ -26,9 +26,12 @@ def _get_markets_from_kalshi_api(all_markets = [], cursor = None):
 
 def reduce_market(event, market):
     # we use polymarket field names for this object. reason = it seems like these should be normalized from the start and polymarket Getter was written first
+    question = market["title"]
+    question = f"{question} ({market['yes_sub_title']})"
+
     return {
         "event_id": event["event_ticker"],
-        "question": market["title"],
+        "question": question,
         "bestBid": market["yes_bid"],
         "bestAsk": market["yes_ask"],
         "endDate": market["close_time"],
