@@ -29,7 +29,8 @@ def _get_markets_from_polymarket_api(offset, limit=50):
             'bestBid': m.get('bestBid'),
             'bestAsk': m.get('bestAsk'),
             'endDate': m['endDateIso'],
-            'id': m['id']    
+            'id': m['id'],
+            'outcomes': m['outcomes']
         })
     
     return markets

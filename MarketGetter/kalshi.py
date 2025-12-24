@@ -10,7 +10,7 @@ def _get_markets_from_kalshi_api(all_markets = [], cursor = None):
 
     events_count = len(events["events"])
     market_count = sum(len(x["markets"]) for x in events["events"])
-    print(f"Retrieved {events_count} events with {market_count} markets using cursor {cursor}")
+    print(f"Retrieved {events_count} events with {market_count} markets using cursor '{cursor}'")
 
     cursor = events.get("cursor")
 
@@ -37,11 +37,10 @@ def reduce_market(event, market):
     }
 
 def get_all_events():
-    regular_event_markets = _get_markets_from_kalshi_api()
-    with open("markets-kalshi-regular.json", "w") as f:
-        json.dump(regular_event_markets, f, indent=2)
-        pprint(f"Total markets: {len(regular_event_markets)}")
-    return regular_event_markets
+    markets = _get_markets_from_kalshi_api()
+    with open("markets-kalshi.json", "w") as f:
+        json.dump(markets, f, indent=2)
+    print(f"Total markets: {len(markets)}")
 
 if __name__ == "__main__":
     get_all_events()
