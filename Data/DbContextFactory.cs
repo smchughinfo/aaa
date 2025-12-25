@@ -10,8 +10,12 @@ namespace Data
             var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
 
             // Hardcode connection string for migrations only
+            var host = Environment.GetEnvironmentVariable("aaa_neon_db_host");
+            var database = Environment.GetEnvironmentVariable("aaa_neon_db_database");
+            var username = Environment.GetEnvironmentVariable("aaa_neon_db_username");
+            var password = Environment.GetEnvironmentVariable("aaa_neon_db_password");
             optionsBuilder.UseNpgsql(
-                Environment.GetEnvironmentVariable("aaa_neon_db"),
+                $"Host={host};Database={database};Username={username};Password={password};SSL Mode=Require",
                 o => o.UseVector()
             );
 

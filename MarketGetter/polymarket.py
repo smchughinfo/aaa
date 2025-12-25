@@ -1,6 +1,7 @@
 import requests
 from pprint import pprint
 import json
+from database import Database
 
 def _get_markets_from_polymarket_api(offset, limit=50):
     try:
@@ -30,7 +31,8 @@ def _get_markets_from_polymarket_api(offset, limit=50):
             'bestAsk': m.get('bestAsk'),
             'endDate': m['endDateIso'],
             'id': m['id'],
-            'outcomes': m['outcomes']
+            'outcomes': m['outcomes'],
+            'platform': 'Polymarket'
         })
     
     return markets
@@ -45,10 +47,16 @@ def get_markets():
         markets.extend(page)
         offset += 50
 
-    with open("markets-polymarket.json", 'w') as f:
-        json.dump(markets, f, indent=2)
+    with Database() as db:
+        for i, market in enumerate(markets, start=1):
+            if i % 100 == 0 or i == len(markets):
+                print(f"{i}/{len(markets)}\tPolymarket Upserts {i/len(markets):.2%} complete.")
+            db.upsert_market(market)
 
-    print(f"Total markets collected: {len(markets)}")
+    #with open("markets-polymarket.json", 'w') as f:
+        #json.dump(markets, f, indent=2)
+
+    print(f"Total markets retrieved from API: {len(markets)}")
 
 if __name__ == "__main__":
     get_markets()

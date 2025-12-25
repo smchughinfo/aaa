@@ -2,6 +2,7 @@ import requests
 from pprint import pprint
 import json
 from datetime import datetime
+from database import Database
 
 def _get_markets_from_kalshi_api(all_markets = [], cursor = None):
     cursor = "" if cursor is None else f"cursor={cursor}&"
@@ -36,14 +37,23 @@ def reduce_market(event, market):
         "bestAsk": market["yes_ask"],
         "endDate": market["close_time"],
         "id": market["ticker"],
-        "outcomes": ["Yes", "No"]
+        "outcomes": ["Yes", "No"],
+        'platform': 'Kalshi'
     }
 
 def get_all_events():
     markets = _get_markets_from_kalshi_api()
-    with open("markets-kalshi.json", "w") as f:
-        json.dump(markets, f, indent=2)
-    print(f"Total markets: {len(markets)}")
+    print(f"Total markets retrieved from API: {len(markets)}")
+
+    with Database() as db:
+        for i, market in enumerate(markets, start=1):
+            if i % 100 == 0 or i == len(markets):
+                print(f"{i}/{len(markets)}\tKalshi Upserts {i/len(markets):.2%} complete.")
+            db.upsert_market(market)
+
+    #with open("markets-kalshi.json", "w") as f:
+        #json.dump(markets, f, indent=2)
+    
 
 if __name__ == "__main__":
     get_all_events()

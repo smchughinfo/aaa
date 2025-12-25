@@ -22,6 +22,15 @@
             "program": "kalshi.py",
             "console": "integratedTerminal",
             "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "Database",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/MarketGetter",
+            "program": "database.py",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
         }
     ]
 }
