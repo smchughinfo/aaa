@@ -19,12 +19,12 @@ def _get_markets_from_polymarket_api(offset, limit=50):
             market["event_id"] = event["id"]
         markets_full.extend(event["markets"])
 
-    markets = []
+    markets = {}
     for m in markets_full:
         if m['closed'] or not m.get('bestBid') or not m.get('bestAsk') or not m.get('endDateIso'):
             continue
-        
-        markets.append({
+
+        markets[m['id']] = {
             'event_id': m['event_id'],
             'question': m['question'],
             'bestBid': m.get('bestBid'),
@@ -33,8 +33,8 @@ def _get_markets_from_polymarket_api(offset, limit=50):
             'id': m['id'],
             'outcomes': m['outcomes'],
             'platform': 'Polymarket'
-        })
-    
+        }
+
     return markets
 
 def get_markets():
@@ -42,21 +42,20 @@ def get_markets():
     offset = 0
     while True:
         page = _get_markets_from_polymarket_api(offset)
-        if page is None or len(page) == 0: 
+        if page is None: 
             break
-        markets.extend(page)
+        markets = markets | page
         offset += 50
-
-    with Database() as db:
-        for i, market in enumerate(markets, start=1):
-            if i % 100 == 0 or i == len(markets):
-                print(f"{i}/{len(markets)}\tPolymarket Upserts {i/len(markets):.2%} complete.")
-            db.upsert_market(market)
-
-    #with open("markets-polymarket.json", 'w') as f:
-        #json.dump(markets, f, indent=2)
+    with open("markets-polymarket.json", 'w') as f:
+        json.dump(markets, f, indent=2)
 
     print(f"Total markets retrieved from API: {len(markets)}")
+
+    with Database() as db:
+        print(f"Upserting {len(markets)} markets in bulk...")
+        db.upsert_markets_bulk(markets)
+        print(f"Bulk upsert complete!")
+
 
 if __name__ == "__main__":
     get_markets()

@@ -43,6 +43,10 @@ def reduce_market(event, market):
 
 def get_all_events():
     markets = _get_markets_from_kalshi_api()
+
+    with open("markets-kalshi.json", "w") as f:
+        json.dump(markets, f, indent=2)
+        
     print(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:
@@ -50,10 +54,6 @@ def get_all_events():
             if i % 100 == 0 or i == len(markets):
                 print(f"{i}/{len(markets)}\tKalshi Upserts {i/len(markets):.2%} complete.")
             db.upsert_market(market)
-
-    #with open("markets-kalshi.json", "w") as f:
-        #json.dump(markets, f, indent=2)
-    
 
 if __name__ == "__main__":
     get_all_events()
