@@ -3,14 +3,15 @@ import kalshi
 import time
 
 i = 1
+wait_time = 1 # minutes
 while True:
     polymarket.save_markets()
     kalshi.save_markets()
-    print(f"saved markets {i} times. going into 15 minutes sleep")
+    print(f"saved markets {i} times. going into {wait_time} minutes sleep")
     i += 1
-    for j in range(0, 15):
+    for j in range(0, wait_time):
         time.sleep(60*1)
-        print(f"{15-(j+1)} minutes remaining before next poll")
+        print(f"{wait_time-(j+1)} minutes remaining before next poll")
 
 ################ CHECK MARKETS-*.JSON FILES FOR DUPLICATE MARKET IDS
 ############ import json

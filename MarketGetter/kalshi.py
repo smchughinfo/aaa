@@ -4,7 +4,10 @@ import json
 from datetime import datetime
 from database import Database
 
-def _get_markets_from_kalshi_api(all_markets = [], cursor = None):
+def _get_markets_from_kalshi_api(all_markets = None, cursor = None):
+    if all_markets is None:
+        all_markets = {}
+
     cursor = "" if cursor is None else f"cursor={cursor}&"
     response = requests.get(f"https://api.elections.kalshi.com/trade-api/v2/events?{cursor}with_nested_markets=true&status=open&limit=200")
     events = response.json()
@@ -18,7 +21,7 @@ def _get_markets_from_kalshi_api(all_markets = [], cursor = None):
     for event in events["events"]:
         for market in event["markets"]:
             reduced_market = reduce_market(event, market)
-            all_markets.append(reduced_market)
+            all_markets[reduced_market['id']] = reduced_market
 
     if cursor:
         _get_markets_from_kalshi_api(all_markets, cursor)
@@ -45,13 +48,13 @@ def save_markets():
     markets = _get_markets_from_kalshi_api()
 
     with open("markets-kalshi.json", "w") as f:
-        json.dump(markets, f, indent=2)
-        
+        json.dump(list(markets.values()), f, indent=2)
+
     print(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:
         print(f"Upserting {len(markets)} markets in bulk...")
-        db.upsert_markets_bulk(markets)
+        db.upsert_markets_bulk(list(markets.values()))
         print(f"Bulk upsert complete!")
 
 if __name__ == "__main__":
