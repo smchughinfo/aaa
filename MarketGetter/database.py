@@ -46,6 +46,39 @@ class Database():
         self.conn.commit()
         cursor.close()
 
+    def upsert_markets_bulk(self, markets):
+        cursor = self.conn.cursor()
+
+        # Build values list
+        values = []
+        now = datetime.utcnow()
+        for m in markets:
+            values.extend([
+                m['id'],
+                m['event_id'],
+                m['question'],
+                m['bestBid'],
+                m['bestAsk'],
+                m['endDate'],
+                json.dumps(m['outcomes']),
+                m['platform'],
+                now
+            ])
+
+        # Create placeholders: (%s, %s, ...), (%s, %s, ...), ...
+        placeholders = ','.join(['(%s,%s,%s,%s,%s,%s,%s,%s,%s)'] * len(markets))
+
+        query = f"""
+            INSERT INTO markets (id, event_id, question, best_bid, best_ask, end_date, outcomes, platform, last_updated)
+            VALUES {placeholders}
+            ON CONFLICT (id) DO UPDATE SET
+                best_bid = EXCLUDED.best_bid,
+                best_ask = EXCLUDED.best_ask,
+                last_updated = EXCLUDED.last_updated
+        """
+
+        cursor.execute(query, values)
+
 if __name__ == "__main__":
     database = Database()
 

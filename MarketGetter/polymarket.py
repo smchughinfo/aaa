@@ -37,7 +37,7 @@ def _get_markets_from_polymarket_api(offset, limit=50):
 
     return markets
 
-def get_markets():
+def save_markets():
     markets = {}
     offset = 0
     while True:
@@ -58,4 +58,4 @@ def get_markets():
 
 
 if __name__ == "__main__":
-    get_markets()
+    save_markets()
