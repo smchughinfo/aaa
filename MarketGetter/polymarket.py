@@ -38,22 +38,22 @@ def _get_markets_from_polymarket_api(offset, limit=50):
     return markets
 
 def get_markets():
-    markets = []
+    markets = {}
     offset = 0
     while True:
         page = _get_markets_from_polymarket_api(offset)
-        if page is None: 
+        if not page: 
             break
         markets = markets | page
         offset += 50
     with open("markets-polymarket.json", 'w') as f:
-        json.dump(markets, f, indent=2)
+        json.dump(list(markets.values()), f, indent=2)
 
     print(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:
         print(f"Upserting {len(markets)} markets in bulk...")
-        db.upsert_markets_bulk(markets)
+        db.upsert_markets_bulk(markets.values())
         print(f"Bulk upsert complete!")
 
 
