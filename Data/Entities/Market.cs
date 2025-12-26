@@ -36,7 +36,7 @@ namespace Data.Entities
         public DateTime LastUpdated { get; set; }
 
         // For later when you add embeddings:
-        // [Column("embedding")]
-        // public float[] Embedding { get; set; }
+        [Column("embedding")]
+        public float[] Embedding { get; set; }
     }
 }
