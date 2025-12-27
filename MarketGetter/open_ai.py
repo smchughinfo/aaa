@@ -46,7 +46,7 @@ def get_canonical_questions(markets):
             prompt = config.canonical_question_prompt.replace("[DATA]", data)
             canonical_question = get_canonical_question(prompt)
         canonical_questions.append(canonical_question)
-        print(f"Generate Canonical - {i}/{len(markets)} - {canonical_question}")
+        print(f"Generate Canonical - {i+1}/{len(markets)} - {canonical_question}")
     return canonical_questions
 
 def get_embeddings_batch(texts):
