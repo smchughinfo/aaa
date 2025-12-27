@@ -82,17 +82,41 @@ class Database():
     def upsert_events_bulk(self, events):
         cursor = self.conn.cursor()
 
-        placeholders = ','.join(['(%s)'] * len(events))
+        # Check if events are dicts or simple values
+        if events and isinstance(events[0], dict):
+            # Handle dict format with optional question and embedding
+            values = []
+            for e in events:
+                values.extend([
+                    e['id'],
+                    e.get('question'),
+                    e.get('embedding')
+                ])
 
-        query = f"""
-            INSERT INTO events (id)
-            VALUES {placeholders}
-            ON CONFLICT (id) DO NOTHING
-        """
+            placeholders = ','.join(['(%s,%s,%s)'] * len(events))
 
-        cursor.execute(query, events)
+            query = f"""
+                INSERT INTO events (id, question, embedding)
+                VALUES {placeholders}
+                ON CONFLICT (id) DO UPDATE SET
+                    question = COALESCE(EXCLUDED.question, events.question),
+                    embedding = COALESCE(EXCLUDED.embedding, events.embedding)
+            """
 
-    def get_events_that_need_embeddings(self, limit=1000):
+            cursor.execute(query, values)
+        else:
+            # Handle simple ID-only format (backward compatible)
+            placeholders = ','.join(['(%s)'] * len(events))
+
+            query = f"""
+                INSERT INTO events (id)
+                VALUES {placeholders}
+                ON CONFLICT (id) DO NOTHING
+            """
+
+            cursor.execute(query, events)
+
+    def get_unprocessed_events(self, limit=1000):
         cursor = self.conn.cursor()
         sql =   f"""
                     SELECT e.id, m.question, m.outcomes
@@ -138,7 +162,7 @@ def test_upsert():
 
 def test_select():
     with Database() as db:
-        markets = db.get_events_that_need_embeddings()
+        markets = db.get_unprocessed_events()
         print(markets)
         print(123)
 
