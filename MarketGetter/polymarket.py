@@ -53,6 +53,10 @@ def save_markets():
     with open("markets-polymarket.json", 'w') as f:
         json.dump(list(markets.values()), f, indent=2)
 
+    if len(markets) == 0:
+        print(f"0 Markers returned! Were we rate limited?")
+        return
+
     print(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:

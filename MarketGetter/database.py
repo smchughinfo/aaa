@@ -3,6 +3,7 @@ import config
 import json
 from datetime import datetime
 import pprint
+import re
 
 class Database():
     def __enter__(self):
@@ -104,7 +105,7 @@ class Database():
             """
 
             cursor.execute(query, values)
-        else:
+        elif len(events) > 0:
             # Handle simple ID-only format (backward compatible)
             placeholders = ','.join(['(%s)'] * len(events))
 
@@ -143,6 +144,20 @@ class Database():
             del events[last_event_id]
 
         return events
+
+    def sanitize_text_for_postgres(text: str) -> str:
+        """Remove characters that break PostgreSQL text fields"""
+        if not text:
+            return text
+        
+        # Remove null bytes
+        text = text.replace('\x00', '')
+        
+        # Optionally remove other control characters (except newlines/tabs)
+        # This removes characters like \x01, \x02, etc. but keeps \n and \t
+        text = re.sub(r'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]', '', text)
+        
+        return text
 
 ################################################################################################
 ####### MAIN ###################################################################################

@@ -11,7 +11,8 @@
             "cwd": "${workspaceFolder}/MarketGetter",
             "program": "Main.py",
             "console": "integratedTerminal",
-            "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
+            "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe",
+            "args": ["--loop"]
         },
         {
             "name": "GET Polymarket",
@@ -50,6 +51,15 @@
             "console": "integratedTerminal",
             "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
         },
+                {
+            "name": "Event Processor",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/MarketGetter",
+            "program": "event_processor.py",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
+        }
         {
             "name": "Service Bus",
             "type": "debugpy",

@@ -1,16 +1,22 @@
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 import os
 import config
+import json
 
 def queue_message(event_ids):
     with ServiceBusClient.from_connection_string(config.aaa_sb_aaa_connection_string) as client:
         with client.get_queue_sender("comparison-queue") as sender:
-            message = ServiceBusMessage("Hello from Python!")
+            text = json.dumps(event_ids)
+            message = ServiceBusMessage(text)
             sender.send_messages(message)
-            print("Message sent!")
+            print("Service Bus Message sent!", text)
+
+################################################################################################
+####### MAIN ###################################################################################
+################################################################################################
 
 def test_service_bus():
-    
+    queue_message(["germs", "guns", "steel"])
     print("TEST SB")
 
 if __name__ == "__main__":

@@ -29,7 +29,9 @@ async def get_canonical_question_async(prompt: str) -> str:
         ],
         text_format=CanonicalOut,
     )
-    return resp.output_parsed.canonical_question
+    canonical_response = resp.output_parsed.canonical_question
+    canonical_response = Database.sanitize_text_for_postgres(canonical_response)
+    return canonical_response
 
 async def get_canonical_questions_async(markets, concurrent_limit=20):
     async def process_market(idx, market):
@@ -91,32 +93,6 @@ def openai_embeddings_test():
     for i, emb in enumerate(embeddings):
         print(f"Embedding {i} (first 5): {emb[:5]}")
 
-def process_next_new_event_batch():    
-    processed_events = []
-    with Database() as db:
-        unprocessed_events = db.get_unprocessed_events()
-    
-    if unprocessed_events:
-        #unprocessed_events =  dict(list(unprocessed_events.items())[:3])
-        canonical_questions = get_canonical_questions(unprocessed_events)
-        embeddings = get_embeddings_batch(canonical_questions)
-        
-        for i, k in enumerate(unprocessed_events):
-            processed_events.append({
-                'id': k,
-                'question': canonical_questions[i],
-                'embedding': embeddings[i],
-            })
-    return processed_events
-
-def process_new_events():
-    batch_num = 1
-    while batch := process_next_new_event_batch():
-        print(f"Processing batch {batch_num}")
-        with Database() as db:
-            db.upsert_events_bulk(batch)
-        batch_num += 1
-
 if __name__ == "__main__":
-   process_new_events()
+   openai_embeddings_test()
 

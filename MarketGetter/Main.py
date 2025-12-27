@@ -1,32 +1,48 @@
 import polymarket
 import kalshi
 import time
+import event_processor
+import argparse
+import service_bus
 
-def get_markets_from_apis_and_save():
-    polymarket.save_markets()
-    kalshi.save_markets()
+def batch_event_id_list(lst, n):
+    return [lst[i:i+n] for i in range(0, len(lst), n)]
 
-def add_missing_embeddings():
-    pass
 
 ################################################################################################
 ####### MAIN ###################################################################################
 ################################################################################################
 
-i = 1
-wait_time = 1 # minutes
-def loop():
+def run_once():
+    polymarket.save_markets()
+    kalshi.save_markets()
+    processed_event_ids = event_processor.process_new_events()
+    batched_event_ids = batch_event_id_list(processed_event_ids, 100)
+    for event_ids in batched_event_ids:
+        service_bus.queue_message(event_ids)
+    # todo: add a compared column to markets. comparer function sets this to true. 
+    # ....then right here you check the db for all non-compared markets (have been missed for some reason, potentially error)
     
+def loop():
+    i = 1
+    wait_time = 1 # minutes
     while True:
-        get_markets_from_apis_and_save()
-        add_missing_embeddings()
+        run_once()
         print(f"saved markets {i} times. going into {wait_time} minutes sleep")
         i += 1
         for j in range(0, wait_time):
             time.sleep(60*1)
             print(f"{wait_time-(j+1)} minutes remaining before next poll")
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--loop", action="store_true", help="Run continuously")
+    parms = parser.parse_args()
 
+    if parms.loop:
+        loop()
+    else:
+        run_once()
 
 
 
