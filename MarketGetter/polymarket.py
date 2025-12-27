@@ -49,7 +49,6 @@ def _get_markets_from_polymarket_api():
     return markets
 
 
-
 def save_markets():
     markets = _get_markets_from_polymarket_api()    
     with open("markets-polymarket.json", 'w') as f:
