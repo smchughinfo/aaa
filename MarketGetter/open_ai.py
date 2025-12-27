@@ -1,9 +1,12 @@
-from openai import OpenAI
+from openai import OpenAI, AsyncOpenAI
 import config
 import json
+import asyncio
 from database import Database
+from pydantic import BaseModel
 
 client = OpenAI(api_key=config.openai_api_key)
+async_client = AsyncOpenAI(api_key=config.openai_api_key)
 
 embedding_model = "text-embedding-3-small"
 canonicalization_model = "gpt-4o-mini"
@@ -14,18 +17,11 @@ def get_embedding(text):
         model=embedding_model
     ).data[0].embedding
 
-from openai import OpenAI
-import json
-import config
-from pydantic import BaseModel
-
-client = OpenAI(api_key=config.openai_api_key)
-
 class CanonicalOut(BaseModel):
     canonical_question: str
 
-def get_canonical_question(prompt: str) -> str:
-    resp = client.responses.parse(
+async def get_canonical_question_async(prompt: str) -> str:
+    resp = await async_client.responses.parse(
         model=canonicalization_model,
         input=[
             {"role": "system", "content": "You normalize prediction market questions to canonical form."},
@@ -35,19 +31,35 @@ def get_canonical_question(prompt: str) -> str:
     )
     return resp.output_parsed.canonical_question
 
-def get_canonical_questions(markets):
-    canonical_questions = []
-    for i, market in enumerate(markets.values()):
-        canonical_question = None
+async def get_canonical_questions_async(markets, concurrent_limit=20):
+    async def process_market(idx, market):
         if len(market["questions"]) == 1:
-            canonical_question = market["questions"][0]
+            canonical_q = market["questions"][0]
         else:
             data = json.dumps(market)
             prompt = config.canonical_question_prompt.replace("[DATA]", data)
-            canonical_question = get_canonical_question(prompt)
-        canonical_questions.append(canonical_question)
-        print(f"Generate Canonical - {i+1}/{len(markets)} - {canonical_question}")
-    return canonical_questions
+            canonical_q = await get_canonical_question_async(prompt)
+        print(f"Generate Canonical - {idx+1}/{len(markets)} - {canonical_q}")
+        return canonical_q
+
+    markets_list = list(markets.values())
+    results = [None] * len(markets_list)
+
+    # Process in chunks to avoid overwhelming the API
+    for chunk_start in range(0, len(markets_list), concurrent_limit):
+        chunk_end = min(chunk_start + concurrent_limit, len(markets_list))
+        chunk_tasks = [
+            process_market(i, markets_list[i])
+            for i in range(chunk_start, chunk_end)
+        ]
+        chunk_results = await asyncio.gather(*chunk_tasks)
+        for i, result in enumerate(chunk_results):
+            results[chunk_start + i] = result
+
+    return results
+
+def get_canonical_questions(markets):
+    return asyncio.run(get_canonical_questions_async(markets))
 
 def get_embeddings_batch(texts):
     if len(texts) > 1000:
@@ -85,7 +97,7 @@ def process_next_new_event_batch():
         unprocessed_events = db.get_unprocessed_events()
     
     if unprocessed_events:
-        unprocessed_events =  dict(list(unprocessed_events.items())[:3])
+        #unprocessed_events =  dict(list(unprocessed_events.items())[:3])
         canonical_questions = get_canonical_questions(unprocessed_events)
         embeddings = get_embeddings_batch(canonical_questions)
         
