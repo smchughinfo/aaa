@@ -25,7 +25,7 @@ def run_once():
     
 def loop():
     i = 1
-    wait_time = 1 # minutes
+    wait_time = 15 # minutes
     while True:
         run_once()
         print(f"saved markets {i} times. going into {wait_time} minutes sleep")
