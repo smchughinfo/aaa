@@ -48,7 +48,6 @@ def _get_markets_from_polymarket_api():
         offset += 50
     return markets
 
-
 def save_markets():
     markets = _get_markets_from_polymarket_api()    
     with open("markets-polymarket.json", 'w') as f:
