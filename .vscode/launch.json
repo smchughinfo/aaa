@@ -49,6 +49,15 @@
             "program": "open_ai.py",
             "console": "integratedTerminal",
             "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "Service Bus",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/MarketGetter",
+            "program": "service_bus.py",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/MarketGetter/.venv/Scripts/python.exe"
         }
     ]
 }
