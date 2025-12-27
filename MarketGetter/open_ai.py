@@ -63,6 +63,35 @@ async def get_canonical_questions_async(markets, concurrent_limit=20):
 def get_canonical_questions(markets):
     return asyncio.run(get_canonical_questions_async(markets))
 
+async def process_next_new_event_batch_async():
+    processed_events = []
+    with Database() as db:
+        unprocessed_events = db.get_unprocessed_events()
+
+    if unprocessed_events:
+        unprocessed_events = dict(list(unprocessed_events.items())[:3])
+        canonical_questions = await get_canonical_questions_async(unprocessed_events)
+        embeddings = get_embeddings_batch(canonical_questions)
+
+        for i, k in enumerate(unprocessed_events):
+            processed_events.append({
+                'id': k,
+                'question': canonical_questions[i],
+                'embedding': embeddings[i],
+            })
+    return processed_events
+
+async def process_new_events_async():
+    batch_num = 1
+    while True:
+        batch = await process_next_new_event_batch_async()
+        if not batch:
+            break
+        print(f"Processing batch {batch_num}")
+        with Database() as db:
+            db.upsert_events_bulk(batch)
+        batch_num += 1
+
 def get_embeddings_batch(texts):
     if len(texts) > 1000:
         raise ValueError("Embedding batch size is limited to 1000")
@@ -75,6 +104,10 @@ def get_embeddings_batch(texts):
 ################################################################################################
 ####### MAIN ###################################################################################
 ################################################################################################
+
+def process_new_events():
+    """Synchronous wrapper for async event processing"""
+    asyncio.run(process_new_events_async())
 
 def openai_embeddings_test():
      # Single
