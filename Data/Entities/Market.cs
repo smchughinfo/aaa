@@ -12,7 +12,10 @@ namespace Data.Entities
         public string Id { get; set; }
 
         [Column("event_id")]
+        [ForeignKey("Event")]
         public string EventId { get; set; }
+
+        public Event Event { get; set; }
 
         [Column("question")]
         public string Question { get; set; }
@@ -34,9 +37,5 @@ namespace Data.Entities
 
         [Column("last_updated")]
         public DateTime LastUpdated { get; set; }
-
-        // For later when you add embeddings:
-        [Column("embedding")]
-        public float[] Embedding { get; set; }
     }
 }

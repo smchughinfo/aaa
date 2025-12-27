@@ -79,9 +79,52 @@ class Database():
 
         cursor.execute(query, values)
 
-if __name__ == "__main__":
-    database = Database()
+    def upsert_events_bulk(self, events):
+        cursor = self.conn.cursor()
 
+        placeholders = ','.join(['(%s)'] * len(events))
+
+        query = f"""
+            INSERT INTO events (id)
+            VALUES {placeholders}
+            ON CONFLICT (id) DO NOTHING
+        """
+
+        cursor.execute(query, events)
+
+    def get_events_that_need_embeddings(self, limit=1000):
+        cursor = self.conn.cursor()
+        sql =   f"""
+                    SELECT e.id, m.question, m.outcomes
+                    FROM markets m 
+                    JOIN events e
+                    ON m.event_id = e.id
+                    WHERE e.question IS NULL
+                    LIMIT %s;
+                """
+        cursor.execute(sql, (limit,))
+        markets = []
+        for row in cursor:
+            markets.append(row)
+
+        events = {}
+
+        if len(markets) > 0:
+            last_event_id = markets[-1][0] # throw this one away. because of the limit we may not have selected all markets for the last event
+            for market in markets:
+                event = events.get(market[0], { "questions": [], "outcomes": [] })
+                event["questions"].append(market[1])
+                event["outcomes"].append(market[2])
+                events[market[0]] = event
+            del events[last_event_id]
+
+        return events
+
+################################################################################################
+####### MAIN ###################################################################################
+################################################################################################
+
+def test_upsert():
     markets = None
     #with open("markets-polymarket.json") as f:
     with open("markets-kalshi.json") as f:
@@ -92,4 +135,12 @@ if __name__ == "__main__":
             db.upsert_market(market)
             print("UPSERT SUCCESS")
             break
-        
+
+def test_select():
+    with Database() as db:
+        markets = db.get_events_that_need_embeddings()
+        print(markets)
+        print(123)
+
+if __name__ == "__main__":
+    test_select()

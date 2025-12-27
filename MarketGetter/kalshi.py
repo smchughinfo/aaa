@@ -53,9 +53,18 @@ def save_markets():
     print(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:
+        unique_event_ids = {market['event_id'] for market in markets.values()}
+        unique_event_ids = list(unique_event_ids)
+        db.upsert_events_bulk(unique_event_ids)
+
+    with Database() as db:
         print(f"Upserting {len(markets)} markets in bulk...")
         db.upsert_markets_bulk(list(markets.values()))
         print(f"Bulk upsert complete!")
+
+################################################################################################
+####### MAIN ###################################################################################
+################################################################################################
 
 if __name__ == "__main__":
     save_markets()

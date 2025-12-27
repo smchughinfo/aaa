@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20251227001845_AddEventForeignKey3")]
+    partial class AddEventForeignKey3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,10 +32,12 @@ namespace Data.Migrations
                         .HasColumnName("id");
 
                     b.PrimitiveCollection<float[]>("Embedding")
+                        .IsRequired()
                         .HasColumnType("real[]")
                         .HasColumnName("embedding");
 
                     b.Property<string>("Question")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("question");
 

@@ -2,16 +2,48 @@ import polymarket
 import kalshi
 import time
 
-i = 1
-wait_time = 1 # minutes
-while True:
+def get_markets_from_apis_and_save():
     polymarket.save_markets()
     kalshi.save_markets()
-    print(f"saved markets {i} times. going into {wait_time} minutes sleep")
-    i += 1
-    for j in range(0, wait_time):
-        time.sleep(60*1)
-        print(f"{wait_time-(j+1)} minutes remaining before next poll")
+
+def add_missing_embeddings():
+    pass
+
+################################################################################################
+####### MAIN ###################################################################################
+################################################################################################
+
+i = 1
+wait_time = 1 # minutes
+def loop():
+    
+    while True:
+        get_markets_from_apis_and_save()
+        add_missing_embeddings()
+        print(f"saved markets {i} times. going into {wait_time} minutes sleep")
+        i += 1
+        for j in range(0, wait_time):
+            time.sleep(60*1)
+            print(f"{wait_time-(j+1)} minutes remaining before next poll")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################################
+#### OLD JUNK ##################################################################################
+################################################################################################
+
 
 ################ CHECK MARKETS-*.JSON FILES FOR DUPLICATE MARKET IDS
 ############ import json
