@@ -3,6 +3,7 @@ from pprint import pprint
 import json
 from datetime import datetime
 from database import Database
+import logging
 
 def _get_markets_from_kalshi_api(all_markets = None, cursor = None):
     if all_markets is None:
@@ -14,7 +15,7 @@ def _get_markets_from_kalshi_api(all_markets = None, cursor = None):
 
     events_count = len(events["events"])
     market_count = sum(len(x["markets"]) for x in events["events"])
-    print(f"Retrieved {events_count} events with {market_count} markets using cursor '{cursor}'")
+    logging.info(f"Retrieved {events_count} events with {market_count} markets using cursor '{cursor}'")
 
     cursor = events.get("cursor")
 
@@ -50,7 +51,7 @@ def save_markets():
     with open("markets-kalshi.json", "w") as f:
         json.dump(list(markets.values()), f, indent=2)
 
-    print(f"Total markets retrieved from API: {len(markets)}")
+    logging.info(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:
         unique_event_ids = {market['event_id'] for market in markets.values()}
@@ -58,9 +59,9 @@ def save_markets():
         db.upsert_events_bulk(unique_event_ids)
 
     with Database() as db:
-        print(f"Upserting {len(markets)} markets in bulk...")
+        logging.info(f"Upserting {len(markets)} markets in bulk...")
         db.upsert_markets_bulk(list(markets.values()))
-        print(f"Bulk upsert complete!")
+        logging.info(f"Bulk upsert complete!")
 
 ################################################################################################
 ####### MAIN ###################################################################################

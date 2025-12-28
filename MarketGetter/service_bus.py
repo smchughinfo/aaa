@@ -2,6 +2,7 @@ from azure.servicebus import ServiceBusClient, ServiceBusMessage
 import os
 import config
 import json
+import logging
 
 def queue_message(event_ids):
     with ServiceBusClient.from_connection_string(config.aaa_sb_aaa_connection_string) as client:
@@ -9,7 +10,7 @@ def queue_message(event_ids):
             text = json.dumps(event_ids)
             message = ServiceBusMessage(text)
             sender.send_messages(message)
-            print("Service Bus Message sent!", text)
+            logging.info("Service Bus Message sent!", text)
 
 ################################################################################################
 ####### MAIN ###################################################################################
@@ -17,7 +18,7 @@ def queue_message(event_ids):
 
 def test_service_bus():
     queue_message(["germs", "guns", "steel"])
-    print("TEST SB")
+    logging.info("TEST SB")
 
 if __name__ == "__main__":
     test_service_bus()

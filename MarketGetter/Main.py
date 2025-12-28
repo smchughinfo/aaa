@@ -4,6 +4,7 @@ import time
 import event_processor
 import argparse
 import service_bus
+import logging
 
 def batch_event_id_list(lst, n):
     return [lst[i:i+n] for i in range(0, len(lst), n)]
@@ -28,11 +29,11 @@ def loop():
     wait_time = 15 # minutes
     while True:
         run_once()
-        print(f"saved markets {i} times. going into {wait_time} minutes sleep")
+        logging.info(f"saved markets {i} times. going into {wait_time} minutes sleep")
         i += 1
         for j in range(0, wait_time):
             time.sleep(60*1)
-            print(f"{wait_time-(j+1)} minutes remaining before next poll")
+            logging.info(f"{wait_time-(j+1)} minutes remaining before next poll")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -87,11 +88,11 @@ if __name__ == "__main__":
 ############ def list_dups(file):
 ############     market_counts = group_markets_by_id(file)
 ############     dup_markets = get_duplicate_markets(market_counts)
-############     pprint(dup_markets)
+############     plogging.info(dup_markets)
 ############ 
-############ print("Polymarket Duplicates")
+############ logging.info("Polymarket Duplicates")
 ############ list_dups("markets-polymarket.json")
-############ print("Kalshi Duplicates")
+############ logging.info("Kalshi Duplicates")
 ############ list_dups("markets-kalshi.json")
 ############ 
-############ print(123)
+############ logging.info(123)

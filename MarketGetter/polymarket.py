@@ -2,15 +2,16 @@ import requests
 from pprint import pprint
 import json
 from database import Database
+import logging
 
 def _get_markets_page_from_polymarket_api(offset, limit=50):
     try:
-        print(f'Getting markets at offset {offset}.')
+        logging.info(f'Getting markets at offset {offset}.')
         url = f'https://gamma-api.polymarket.com/events?order=id&ascending=false&closed=false&limit={limit}&offset={offset}'
         response = requests.get(url)
         events = response.json()
     except Exception as e:
-        print(f"Error fetching markets: {e}")
+        logging.info(f"Error fetching markets: {e}")
         return None
 
     markets_full = []
@@ -54,10 +55,10 @@ def save_markets():
         json.dump(list(markets.values()), f, indent=2)
 
     if len(markets) == 0:
-        print(f"0 Markers returned! Were we rate limited?")
+        logging.info(f"0 Markers returned! Were we rate limited?")
         return
 
-    print(f"Total markets retrieved from API: {len(markets)}")
+    logging.info(f"Total markets retrieved from API: {len(markets)}")
 
     with Database() as db:
         unique_event_ids = {market['event_id'] for market in markets.values()}
@@ -65,9 +66,9 @@ def save_markets():
         db.upsert_events_bulk(unique_event_ids)
 
     with Database() as db:
-        print(f"Upserting {len(markets)} markets in bulk...")
+        logging.info(f"Upserting {len(markets)} markets in bulk...")
         db.upsert_markets_bulk(markets.values())
-        print(f"Bulk upsert complete!")
+        logging.info(f"Bulk upsert complete!")
 
 ################################################################################################
 ####### MAIN ###################################################################################

@@ -4,6 +4,7 @@ import json
 import asyncio
 from database import Database
 from pydantic import BaseModel
+import logging
 
 client = OpenAI(api_key=config.openai_api_key)
 async_client = AsyncOpenAI(api_key=config.openai_api_key)
@@ -41,7 +42,7 @@ async def get_canonical_questions_async(markets, concurrent_limit=20):
             data = json.dumps(market)
             prompt = config.canonical_question_prompt.replace("[DATA]", data)
             canonical_q = await get_canonical_question_async(prompt)
-        print(f"Generate Canonical - {idx+1}/{len(markets)} - {canonical_q}")
+        logging.info(f"Generate Canonical - {idx+1}/{len(markets)} - {canonical_q}")
         return canonical_q
 
     markets_list = list(markets.values())
@@ -87,7 +88,7 @@ async def process_new_events_async():
         batch = await process_next_new_event_batch_async()
         if not batch:
             break
-        print(f"Processing batch {batch_num}")
+        logging.info(f"Processing batch {batch_num}")
         with Database() as db:
             db.upsert_events_bulk(batch)
         batch_num += 1
@@ -112,7 +113,7 @@ def process_new_events():
 def openai_embeddings_test():
      # Single
     single = get_embedding("the cat in the hat")
-    print(f"Single embedding (first 5): {single[:5]}")
+    logging.info(f"Single embedding (first 5): {single[:5]}")
     
     # Batch
     texts = [
@@ -122,9 +123,9 @@ def openai_embeddings_test():
     ]
     embeddings = get_embeddings_batch(texts)
     
-    print(f"\nBatch size: {len(embeddings)}")
+    logging.info(f"\nBatch size: {len(embeddings)}")
     for i, emb in enumerate(embeddings):
-        print(f"Embedding {i} (first 5): {emb[:5]}")
+        logging.info(f"Embedding {i} (first 5): {emb[:5]}")
 
 if __name__ == "__main__":
    openai_embeddings_test()

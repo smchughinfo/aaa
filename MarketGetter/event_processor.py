@@ -1,6 +1,7 @@
 from database import Database
 import open_ai
 import asyncio
+import logging
 
 async def process_next_new_event_batch_async():
     processed_events = []
@@ -27,7 +28,7 @@ async def process_new_events_async():
         batch = await process_next_new_event_batch_async()
         if not batch:
             break
-        print(f"Processing batch {batch_num}")
+        logging.info(f"Processing batch {batch_num}")
         with Database() as db:
             db.upsert_events_bulk(batch)
             batch_event_ids = [x["id"] for x in batch]

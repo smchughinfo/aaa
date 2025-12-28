@@ -8,18 +8,18 @@ import logging
 
 class Database():
     def __enter__(self):
-        print("Entering: connecting to database")
+        logging.info("Entering: connecting to database")
         self.conn = psycopg2.connect(config.connection_string)
         return self  # This becomes the 'db' variable in the with
     
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("Exiting: cleaning up")
+        logging.info("Exiting: cleaning up")
         if exc_type is None:  # No exception occurred
-            print("  Success! Committing...")
+            logging.info("  Success! Committing...")
             self.conn.commit()
         else:  # Exception occurred
-            print(f"  Error occurred: {exc_val}")
-            print("  Rolling back...")
+            logging.info(f"  Error occurred: {exc_val}")
+            logging.info("  Rolling back...")
             self.conn.rollback()
             
         self.conn.close()
@@ -173,14 +173,14 @@ def test_upsert():
     with Database() as db:
         for market in markets:
             db.upsert_market(market)
-            print("UPSERT SUCCESS")
+            logging.info("UPSERT SUCCESS")
             break
 
 def test_select():
     with Database() as db:
         markets = db.get_unprocessed_events()
-        print(markets)
-        print(123)
+        logging.info(markets)
+        logging.info(123)
 
 if __name__ == "__main__":
     test_select()
