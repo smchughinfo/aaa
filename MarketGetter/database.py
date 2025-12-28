@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 import pprint
 import re
+import logging
 
 class Database():
     def __enter__(self):
