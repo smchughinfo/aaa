@@ -1,0 +1,13 @@
+.git*
+.vscode
+__pycache__
+*.pyc
+.env
+local.settings.json
+.venv
+venv/
+.python_packages/
+*.md
+ss.png
+err.png
+markets-*.json
