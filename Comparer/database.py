@@ -25,7 +25,15 @@ class Database():
         self.conn.close()
         return False  # Don't suppress exceptions
 
-    def get_similiar_markets(self, event_id, limit=5):
+    def get_comporable_markets(self, event_id, limit=5) -> list:
+        '''
+        Includes self. e.g. Includes the markets for the provided event_id
+        
+        :param event_id: The event_id of the event whose question will be used to find similiar events.
+        :param limit: The n events whose question is most similiar to event_id's question.
+        :return: All markets for similiar events
+        :rtype: list
+        '''
         cursor = self.conn.cursor()
         sql =   f"""
                     WITH source AS (
@@ -40,7 +48,6 @@ class Database():
                         FROM events e
                         CROSS JOIN source s
                         WHERE e.embedding IS NOT NULL
-                        AND 1 - (e.embedding <=> s.embedding) != 1
                         ORDER BY e.embedding <=> s.embedding
                         LIMIT %s
                     )
@@ -83,7 +90,7 @@ class Database():
 
 def test_select():
     with Database() as db:
-        markets = db.get_similiar_markets("KXELONMARS-99")
+        markets = db.get_comporable_markets("KXELONMARS-99")
         logging.info(markets)
         logging.info(123)
 
