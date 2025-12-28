@@ -13,9 +13,8 @@ namespace Data.Entities
         [Column("id")]
         public string Id { get; set; }
 
-        // For later when you add embeddings:
-        [Column("embedding")]
-        public float[]? Embedding { get; set; }
+        [Column("embedding", TypeName = "vector(1536)")]
+        public Pgvector.Vector? Embedding { get; set; } 
 
         [Column("question")]
         public string? Question { get; set; }

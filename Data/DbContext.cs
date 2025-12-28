@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Pgvector.EntityFrameworkCore;
 
 namespace Data
 {
@@ -11,21 +12,26 @@ namespace Data
         }
 
         public DbSet<Market> Markets { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.HasPostgresExtension("vector");
+
             modelBuilder.Entity<Market>(entity =>
             {
                 entity.HasKey(e => e.Id);
-
                 entity.Property(e => e.Outcomes)
-                    .HasColumnType("jsonb"); // Postgres JSONB type
+                    .HasColumnType("jsonb");
+            });
 
-                // If you add embeddings later:
-                // entity.Property(e => e.Embedding)
-                //     .HasColumnType("vector(1536)");
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Embedding)
+                    .HasColumnType("vector(1536)");
             });
         }
     }
