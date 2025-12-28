@@ -25,33 +25,43 @@ class Database():
         self.conn.close()
         return False  # Don't suppress exceptions
 
-    def get_uncompared_markets(self, limit=2):
+    def get_similiar_markets(self, event_id, limit=5):
         cursor = self.conn.cursor()
         sql =   f"""
-                    SELECT e.id, m.question, m.outcomes
-                    FROM markets m 
-                    JOIN events e
-                    ON m.event_id = e.id
-                    WHERE e.question IS NULL
-                    LIMIT %s;
+                    WITH source AS (
+                        SELECT embedding 
+                        FROM events 
+                        WHERE id = %s 
+                        LIMIT 1
+                    ),
+                    similiar_events AS (
+                    SELECT 
+                        ID
+                        FROM events e
+                        CROSS JOIN source s
+                        WHERE e.embedding IS NOT NULL
+                        AND 1 - (e.embedding <=> s.embedding) != 1
+                        ORDER BY e.embedding <=> s.embedding
+                        LIMIT %s
+                    )
+                    SELECT id, event_id, question, outcomes
+                    FROM Markets m
+                    WHERE m.event_id in (
+                        SELECT id
+                        FROM similiar_events
+                    )
                 """
-        cursor.execute(sql, (limit,))
+        cursor.execute(sql, (event_id, limit))
         markets = []
         for row in cursor:
-            markets.append(row)
+            markets.append({
+                "id": row["id"],
+                "event_id": row["event_id"],
+                "question": row["question"],
+                "outcomes": row["outcomes"],
+            })
 
-        events = {}
-
-        if len(markets) > 0:
-            last_event_id = markets[-1][0] # throw this one away. because of the limit we may not have selected all markets for the last event
-            for market in markets:
-                event = events.get(market[0], { "questions": [], "outcomes": [] })
-                event["questions"].append(market[1])
-                event["outcomes"].append(market[2])
-                events[market[0]] = event
-            del events[last_event_id]
-
-        return events
+        return markets
 
     def sanitize_text_for_postgres(text: str) -> str:
         """Remove characters that break PostgreSQL text fields"""
@@ -73,7 +83,7 @@ class Database():
 
 def test_select():
     with Database() as db:
-        markets = db.get_unprocessed_events()
+        markets = db.get_similiar_markets("KXELONMARS-99")
         logging.info(markets)
         logging.info(123)
 
