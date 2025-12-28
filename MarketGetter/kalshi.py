@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 from database import Database
 import logging
+import config
 
 def _get_markets_from_kalshi_api(all_markets = None, cursor = None):
     if all_markets is None:
@@ -48,8 +49,9 @@ def reduce_market(event, market):
 def save_markets():
     markets = _get_markets_from_kalshi_api()
 
-    with open("markets-kalshi.json", "w") as f:
-        json.dump(list(markets.values()), f, indent=2)
+    if config.on_dev:
+        with open("markets-kalshi.json", "w") as f:
+            json.dump(list(markets.values()), f, indent=2)
 
     logging.info(f"Total markets retrieved from API: {len(markets)}")
 

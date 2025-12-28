@@ -1,5 +1,8 @@
 import os
 
+# Check if running on local dev machine vs Azure
+on_dev = os.environ.get("aaa_on_dev", "false").lower() == "true"
+
 host=os.environ["aaa_neon_db_host"]
 database=os.environ["aaa_neon_db_database"]
 user=os.environ["aaa_neon_db_username"]

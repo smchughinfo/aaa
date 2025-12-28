@@ -3,6 +3,7 @@ from pprint import pprint
 import json
 from database import Database
 import logging
+import config
 
 def _get_markets_page_from_polymarket_api(offset, limit=50):
     try:
@@ -50,9 +51,11 @@ def _get_markets_from_polymarket_api():
     return markets
 
 def save_markets():
-    markets = _get_markets_from_polymarket_api()    
-    with open("markets-polymarket.json", 'w') as f:
-        json.dump(list(markets.values()), f, indent=2)
+    markets = _get_markets_from_polymarket_api()   
+    
+    if config.on_dev:
+        with open("markets-polymarket.json", 'w') as f:
+            json.dump(list(markets.values()), f, indent=2)
 
     if len(markets) == 0:
         logging.info(f"0 Markers returned! Were we rate limited?")
