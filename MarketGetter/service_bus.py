@@ -10,7 +10,7 @@ def queue_message(event_ids):
             text = json.dumps(event_ids)
             message = ServiceBusMessage(text)
             sender.send_messages(message)
-            logging.info("Service Bus Message sent!", text)
+            logging.info(f"Service Bus Message sent! {text}")
 
 ################################################################################################
 ####### MAIN ###################################################################################
