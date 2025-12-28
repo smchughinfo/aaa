@@ -34,6 +34,7 @@ class Database():
         :return: All markets for similiar events
         :rtype: list
         '''
+        limit = limit + 1 # add 1 because we include markets for the supplied event_id so we to get 1 additional event to get {limit} matches
         cursor = self.conn.cursor()
         sql =   f"""
                     WITH source AS (
@@ -62,10 +63,11 @@ class Database():
         markets = []
         for row in cursor:
             markets.append({
-                "id": row["id"],
-                "event_id": row["event_id"],
-                "question": row["question"],
-                "outcomes": row["outcomes"],
+                "id": row[0],
+                "role": "reference" if row[0] == event_id else "target",
+                "event_id": row[1],
+                "question": row[2],
+                "outcomes": row[3],
             })
 
         return markets
