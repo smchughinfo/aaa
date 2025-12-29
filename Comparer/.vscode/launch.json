@@ -4,12 +4,33 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "name": "Viewer.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/viewer.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Main",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--promptnumber","1", "--datanumber", "1"]
+        },
         {
             "name": "Database",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/database.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "OpenAI",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/open_ai.py",
             "console": "integratedTerminal"
         }
     ]
