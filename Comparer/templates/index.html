@@ -101,7 +101,7 @@
         .id-cell {
             font-weight: 600;
             color: #667eea;
-            width: 9px;
+            width: 90px;
         }
 
         .question {
@@ -128,9 +128,10 @@
 
         .answer-cell {
             text-align: center;
-            width: 50px;
             padding-left: 0;
             padding-right: 0;
+            width: 50px;
+            max-width: 50px;
         }
 
         .answer-badge {
@@ -152,7 +153,7 @@
         }
 
         .market-cell {
-            width: 50%;
+            width: 450px;;
             font-size: 1.1em;
         }
 
@@ -338,9 +339,9 @@
                     <th>ID</th>
                     <th>Market 1</th>
                     <th>Market 2</th>
-                    <th>LLM Answer</th>
-                    <th>Correct Answer</th>
-                    <th>Result</th>
+                    <th title="LLM Response">🤖</th>
+                    <th title="Actual Answer">✓</th>
+                    <th title="Result">📊</th>
                 </tr>
             </thead>
             <tbody>
