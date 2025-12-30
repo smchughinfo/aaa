@@ -101,7 +101,7 @@
         .id-cell {
             font-weight: 600;
             color: #667eea;
-            width: 90px;
+            width: 60px;
         }
 
         .question {
@@ -347,7 +347,7 @@
             <tbody>
                 {% for item in comparisons %}
                 <tr>
-                    <td class="id-cell">{{ item.comparison.comparison_id }}</td>
+                    <td class="id-cell">{{ item.comparison.comparison_id.replace("comparison_", "") }}</td>
                     <td class="market-cell">
                         <div class="question">{{ item.comparison.market_1.question }}</div>
                         <div class="outcomes">
