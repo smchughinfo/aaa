@@ -28,6 +28,9 @@ class MarketComparison(BaseModel):
 class MarketComparisonList(BaseModel):
     comparisons: List[MarketComparison]
 
+    def to_json(self):
+        return self.model_dump_json(indent=2)
+    
 ################################################################################################
 ####### LOGIC ##################################################################################
 ################################################################################################
@@ -43,7 +46,8 @@ def compare_markets(prompt, test_data):
         ],
         text_format=MarketComparisonList,
     )
-    return resp.output_parsed.comparisons
+
+    return resp.output_parsed
 
 ################################################################################################
 ####### MAIN ###################################################################################

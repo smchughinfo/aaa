@@ -17,7 +17,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal",
-            "args": ["--promptnumber","1", "--datanumber", "1"]
+            "args": [
+                "--promptnumber","1", 
+                "--datanumber", "1",
+                "--datalimit", "2",
+            ]
         },
         {
             "name": "Database",

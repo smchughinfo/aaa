@@ -1,0 +1,18 @@
+{
+  "comparisons": [
+    {
+      "market_id1": "comparison_11_market_1",
+      "market_id2": "comparison_11_market_2",
+      "relationship": "EQUIVALENT",
+      "arbitrage_match": true,
+      "notes": "Both markets ask about the same event but with different wording and outcomes."
+    },
+    {
+      "market_id1": "comparison_12_market_1",
+      "market_id2": "comparison_12_market_2",
+      "relationship": "EQUIVALENT",
+      "arbitrage_match": true,
+      "notes": "Both markets inquire about the same weather event, just phrased differently."
+    }
+  ]
+}
