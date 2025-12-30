@@ -21,6 +21,7 @@
                 "--promptnumber","1", 
                 "--datanumber", "1",
                 "--datalimit", "2",
+                "--batchsize", "5",
             ]
         },
         {

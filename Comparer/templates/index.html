@@ -101,7 +101,7 @@
         .id-cell {
             font-weight: 600;
             color: #667eea;
-            width: 120px;
+            width: 9px;
         }
 
         .question {
@@ -128,7 +128,9 @@
 
         .answer-cell {
             text-align: center;
-            width: 100px;
+            width: 50px;
+            padding-left: 0;
+            padding-right: 0;
         }
 
         .answer-badge {
@@ -150,7 +152,118 @@
         }
 
         .market-cell {
-            width: 40%;
+            width: 50%;
+            font-size: 1.1em;
+        }
+
+        /* Results Chooser Styles */
+        .results-chooser {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .current-result {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            flex-wrap: wrap;
+        }
+
+        .result-param {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .result-param-label {
+            font-size: 1.5em;
+            margin-right: 9em;
+            font-weight: bold;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-param-value {
+            font-size: 2em;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .prompt-toggle {
+            cursor: pointer;
+            color: #667eea;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .prompt-toggle:hover {
+            color: #764ba2;
+        }
+
+        .prompt-text {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background: #f9fafb;
+            left: 3px solid #667eea;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.4em;
+            white-space: pre-wrap;
+            max-height: 800px;
+            overflow-y: auto;
+        }
+
+        .prompt-text.show {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 10px;
+        }
+
+        .result-option {
+            padding: 12px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            text-align: center;
+        }
+
+        .result-option:hover {
+            background: #f3f4f6;
+            border-color: #667eea;
+        }
+
+        .result-option.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .result-option-label {
+            font-size: 1em;
+            opacity: 0.8;
+            margin-bottom: 3px;
+        }
+
+        .result-option-value {
+            font-weight: 600;
+            font-size: 1.2em;
         }
     </style>
 </head>
@@ -158,28 +271,76 @@
     <div class="container">
         <h1>🔍 Market Comparison Viewer</h1>
 
+        <!-- Results Chooser -->
+        <div class="results-chooser">
+            <div class="current-result">
+                <div class="result-param">
+                    <div class="result-param-label">Prompt</div>
+                    <div class="result-param-value">
+                        <span class="prompt-toggle" onclick="togglePrompt()">{{ current_selection.prompt_num }}</span>
+                    </div>
+                </div>
+                <div class="result-param">
+                    <div class="result-param-label">Data</div>
+                    <div class="result-param-value">{{ current_selection.data_num }}</div>
+                </div>
+                <div class="result-param">
+                    <div class="result-param-label">Limit</div>
+                    <div class="result-param-value">{{ current_selection.data_limit }}</div>
+                </div>
+                <div class="result-param">
+                    <div class="result-param-label">Batch Size</div>
+                    <div class="result-param-value">{{ current_selection.batch_size }}</div>
+                </div>
+            </div>
+            <div class="prompt-text" id="promptText">{{ current_selection.prompt_text }}</div>
+
+            <h3 style="margin-bottom: 10px; color: #1f2937; font-size: 1em;">Available Results:</h3>
+            <div class="results-grid">
+                {% for result in all_results %}
+                <a href="?prompt={{ result.prompt_num }}&data={{ result.data_num }}&limit={{ result.data_limit }}&batch={{ result.batch_size }}"
+                   class="result-option {{ 'active' if result.prompt_num == current_selection.prompt_num and result.data_num == current_selection.data_num and result.data_limit == current_selection.data_limit and result.batch_size == current_selection.batch_size else '' }}">
+                    <div class="result-option-label">P{{ result.prompt_num }}_D{{ result.data_num }}</div>
+                    <div class="result-option-value">L{{ result.data_limit }} B{{ result.batch_size }}</div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <script>
+            function togglePrompt() {
+                document.getElementById('promptText').classList.toggle('show');
+            }
+        </script>
+
         <div class="stats">
             <div class="stat-item">
                 <div class="stat-value">{{ total }}</div>
                 <div class="stat-label">Total</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" style="color: #10b981;">{{ arbitrageable }}</div>
-                <div class="stat-label">Arbitrageable</div>
+                <div class="stat-value" style="color: #10b981;">{{ correct }}</div>
+                <div class="stat-label">Correct</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" style="color: #ef4444;">{{ not_arbitrageable }}</div>
-                <div class="stat-label">Not Arbitrageable</div>
+                <div class="stat-value" style="color: #ef4444;">{{ incorrect }}</div>
+                <div class="stat-label">Incorrect</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" style="color: #667eea;">{{ "%.1f"|format(accuracy) }}%</div>
+                <div class="stat-label">Accuracy</div>
             </div>
         </div>
 
         <table>
-            <thead>
+            <thead style="font-size: 1.4em;">
                 <tr>
                     <th>ID</th>
                     <th>Market 1</th>
                     <th>Market 2</th>
+                    <th>LLM Answer</th>
                     <th>Correct Answer</th>
+                    <th>Result</th>
                 </tr>
             </thead>
             <tbody>
@@ -203,8 +364,18 @@
                         </div>
                     </td>
                     <td class="answer-cell">
-                        <span class="answer-badge {{ 'answer-true' if item.answer else 'answer-false' }}">
-                            {{ '✓' if item.answer else '✗' }}
+                        <span class="answer-badge {{ 'answer-true' if item.result.arbitrage_match else 'answer-false' }}">
+                            {{ '✓' if item.result.arbitrage_match else '✗' }}
+                        </span>
+                    </td>
+                    <td class="answer-cell">
+                        <span class="answer-badge {{ 'answer-true' if item.result.correct_answer else 'answer-false' }}">
+                            {{ '✓' if item.result.correct_answer else '✗' }}
+                        </span>
+                    </td>
+                    <td class="answer-cell">
+                        <span class="answer-badge {{ 'answer-true' if item.result.categorized_correctly else 'answer-false' }}">
+                            {{ '✓' if item.result.categorized_correctly else '✗' }}
                         </span>
                     </td>
                 </tr>
