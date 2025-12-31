@@ -107,8 +107,6 @@ def basic_comparison_test(prompt_num, data_num, data_limit):
     save_results(prompt_num, data_num, data_limit, _data_answers, [results])
 
 if __name__ == "__main__":
-    compare_markets()
-else:
     parser = argparse.ArgumentParser()
     parser.add_argument("--promptnumber", type=str, help="the comparison prompt to send to chatgpt. found in /EXPERIMENTAL_SYSTEM_PROMTS/prompt_{--promptnumber}.py")
     parser.add_argument("--datanumber", type=str, help="the comparison data to send to chatgpt. found in /EXPERIMENTAL_TEST_DATA/data_{--datanumber}.py. Answers are found in /EXPERIMENTAL_TEST_DATA/data_answers_{--datanumber}.py")

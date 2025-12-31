@@ -4,14 +4,9 @@
 		{
 			"type": "func",
 			"label": "func: host start",
-			"command": "host start",
+			"command": "host start --verbose",
 			"problemMatcher": "$func-python-watch",
 			"isBackground": true,
-			"options": {
-				"env": {
-					"languageWorkers__python__arguments": "-m debugpy --listen 0.0.0.0:9091"
-				}
-			},
 			"dependsOn": "pip install (functions)"
 		},
 		{

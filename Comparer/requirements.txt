@@ -3,3 +3,7 @@
 # azure-monitor-opentelemetry
 Flask==3.0.0
 azure-functions
+openai
+pydantic
+psycopg2-binary
+azure-servicebus
