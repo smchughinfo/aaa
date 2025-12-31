@@ -89,7 +89,8 @@ def run_experiment(prompt_num, data_num, data_limit, batch_size):
 def compare_markets(event_ids):
     comparable_markets = None
     with Database() as db:
-        comparable_markets = db.get_comporable_markets()
+        comparable_markets = db.get_comporable_markets(event_ids)
+        print("132456")
     print(123)
 
 ################################################################################################
