@@ -5,6 +5,7 @@ from pathlib import Path
 from EXPERIMENTAL_SYSTEM_PROMPTS import *
 from EXPERIMENTAL_TEST_DATA import *
 from database import Database
+import logging
 
 def get_batches(data_list, batch_size):
     """
@@ -23,16 +24,6 @@ def get_batches(data_list, batch_size):
     return batches
 
 def format_output(comparisons, data_answers_batched):
-    """
-    Format results by adding correct answers and accuracy check.
-
-    Args:
-        comparisons: List of MarketComparison objects
-        data_answers_batched: Batched list of correct answers (list of lists)
-
-    Returns:
-        List of dicts with comparison data + correct_answer + categorized_correctly
-    """
     # Flatten data_answers from batched structure
     data_answers_flat = []
     for batch in data_answers_batched:
@@ -86,12 +77,55 @@ def run_experiment(prompt_num, data_num, data_limit, batch_size):
     results = open_ai.compare_markets_batch(prompt, _data, concurrent_limit=20)
     save_results(prompt_num, data_num, data_limit, batch_size, _data_answers, results)
 
-def compare_markets(event_ids):
-    comparable_markets = None
+def format_markets_for_comparison(comparable_markets: list[list[dict]]) -> list[dict]:
+    comparisons = []
+    comparison_counter = 1
+
+    for event_group in comparable_markets:
+        # Find the reference market (the source event)
+        reference = None
+        targets = []
+
+        for market in event_group:
+            if market['role'] == 'reference':
+                reference = market
+            else:
+                targets.append(market)
+
+        if not reference:
+            logging.warning(f"No reference market found in group, skipping")
+            continue
+
+        # Create a comparison for reference vs each target
+        for target in targets:
+            # Parse outcomes if they're strings, otherwise use as-is
+            ref_outcomes = reference['outcomes'] if isinstance(reference['outcomes'], list) else json.loads(reference['outcomes'])
+            target_outcomes = target['outcomes'] if isinstance(target['outcomes'], list) else json.loads(target['outcomes'])
+
+            comparison = {
+                "comparison_id": f"comparison_{comparison_counter}",
+                "market_1": {
+                    "question": reference['question'],
+                    "outcomes": ref_outcomes
+                },
+                "market_2": {
+                    "question": target['question'],
+                    "outcomes": target_outcomes
+                }
+            }
+            comparisons.append(comparison)
+            comparison_counter += 1
+
+    return comparisons
+
+async def compare_markets(event_ids):
     with Database() as db:
-        comparable_markets = db.get_comporable_markets(event_ids)
-        print("132456")
-    print(123)
+        comparable_markets = db.get_comporable_markets_batch(event_ids, limit=3)
+    comparison_data = format_markets_for_comparison(comparable_markets)
+    prompt = prompts["9"]
+    results = await open_ai.compare_markets_batch_async(prompt, comparison_data, concurrent_limit=20)
+    save_results(9, 0, 0, 0, [], results)
+
 
 ################################################################################################
 ####### MAIN ###################################################################################

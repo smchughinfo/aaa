@@ -10,7 +10,7 @@ app = func.FunctionApp()
     queue_name="comparison-queue",
     connection="aaa_sb_aaa_connection_string"
 )
-def process_comparison_queue(azservicebus: func.ServiceBusMessage):
+async def process_comparison_queue(azservicebus: func.ServiceBusMessage):
     # hello
     logging.info('Processing comparison queue message')
 
@@ -21,7 +21,7 @@ def process_comparison_queue(azservicebus: func.ServiceBusMessage):
     logging.info(f'Event IDs to process: {event_ids}')
 
     # run comparer
-    main.compare_markets(event_ids)
+    await main.compare_markets(event_ids)
 
     # success!
     logging.info('Message processed successfully')
