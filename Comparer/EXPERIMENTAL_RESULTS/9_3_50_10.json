@@ -1,0 +1,452 @@
+[
+  {
+    "market_id1": "comparison_1_market_1",
+    "market_id2": "comparison_1_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets refer to the same event (rain) on the same date in closely related geographical areas (Manhattan vs. NYC).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_2_market_1",
+    "market_id2": "comparison_2_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Dallas is a city within Texas; outcomes of Dallas hitting 100\u00b0F are a subset of outcomes for Texas hitting 100\u00b0F.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_3_market_1",
+    "market_id2": "comparison_3_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Chicago is a city within Illinois; snowfall in Chicago is a subset of snowfall in Illinois.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_4_market_1",
+    "market_id2": "comparison_4_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets inquire about rain in the same area (Portland) for the same date.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_5_market_1",
+    "market_id2": "comparison_5_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Houston is part of the Gulf Coast; however, hurricanes could form and affect areas not limited to just Houston.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_6_market_1",
+    "market_id2": "comparison_6_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "San Jose is a city within Silicon Valley; the event of an earthquake in San Jose is a subset of that in Silicon Valley.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_7_market_1",
+    "market_id2": "comparison_7_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Boston is a city within Massachusetts; outcomes for Boston being above 95\u00b0F are a subset of outcomes for Massachusetts.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_8_market_1",
+    "market_id2": "comparison_8_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets focus on snow in the same locale (Atlanta) for the same time frame.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_9_market_1",
+    "market_id2": "comparison_9_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets inquire about tornadoes in related locations (Oklahoma City vs. Oklahoma) during the same season.",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_10_market_1",
+    "market_id2": "comparison_10_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Las Vegas is a city within Nevada; outcomes of Las Vegas hitting 115\u00b0F are a subset of outcomes for Nevada.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_11_market_1",
+    "market_id2": "comparison_11_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "Outcomes do not map 1:1 and are not opposites.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_12_market_1",
+    "market_id2": "comparison_12_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "Outcomes do not map 1:1 and are not opposites.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_13_market_1",
+    "market_id2": "comparison_13_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yankees winning or not winning the World Series are perfect opposites.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_14_market_1",
+    "market_id2": "comparison_14_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Chiefs winning or not winning the Super Bowl are perfect opposites.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_15_market_1",
+    "market_id2": "comparison_15_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Democrats winning is a subset of the broader Presidential election winner market.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_16_market_1",
+    "market_id2": "comparison_16_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Both markets are related to new phone releases but not directly opposites or subsets.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_17_market_1",
+    "market_id2": "comparison_17_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets are the same question, outcomes map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_18_market_1",
+    "market_id2": "comparison_18_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets are the same question, outcomes map 1:1.",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_19_market_1",
+    "market_id2": "comparison_19_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Both markets concern the same product but different companies; not directly aligned.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_20_market_1",
+    "market_id2": "comparison_20_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Anthropic's release is specific whereas 'AI lab' is more generic; not directly opposites.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_21_market_1",
+    "market_id2": "comparison_21_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Gemini 2.0 is a specific AI model by Google, making the first market a subset of the second.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_22_market_1",
+    "market_id2": "comparison_22_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Windows 12 is a specific version of Windows, which is a subset of any new Windows version.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_23_market_1",
+    "market_id2": "comparison_23_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "PlayStation 6 is a specific gaming console, making it a subset of any new gaming console.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_24_market_1",
+    "market_id2": "comparison_24_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Starship reaching orbit vs any SpaceX vehicle reaching orbit are considered exact opposites.",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_25_market_1",
+    "market_id2": "comparison_25_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "ChatGPT Pro is a specific subscription, making it a subset of the broader new subscription tier.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_26_market_1",
+    "market_id2": "comparison_26_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets reference the NVIDIA stock price at the exact same time despite phrasing differences.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_27_market_1",
+    "market_id2": "comparison_27_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "$200+ is a specific condition compared to the broader At least $200 condition.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_28_market_1",
+    "market_id2": "comparison_28_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Above $50 vs Yes (will end above) is a matching outcome mapping; the phrasing differs.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_29_market_1",
+    "market_id2": "comparison_29_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Meta's stock price at the exact same moment with equivalent outcomes.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_30_market_1",
+    "market_id2": "comparison_30_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Phrasing is different but both markets refer to the same stock price at the end of 2025.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_31_market_1",
+    "market_id2": "comparison_31_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Above $100k' is opposite to Market 2 outcome 'At or below $100k'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_32_market_1",
+    "market_id2": "comparison_32_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Above $5000' is opposite to Market 2 outcome 'At or below $5000'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_33_market_1",
+    "market_id2": "comparison_33_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Above 6000' is opposite to Market 2 outcome 'At or below 6000'.",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_34_market_1",
+    "market_id2": "comparison_34_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Above 45000' is opposite to Market 2 outcome 'At or below 45000'.",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_35_market_1",
+    "market_id2": "comparison_35_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Above $350' is opposite to Market 2 outcome 'At or below $350'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_36_market_1",
+    "market_id2": "comparison_36_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Yes' corresponds to Market 2 outcome 'More than 2%'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_37_market_1",
+    "market_id2": "comparison_37_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Yes' corresponds to Market 2 outcome 'Above 3%'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_38_market_1",
+    "market_id2": "comparison_38_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Market outcomes are not direct opposites or complete subsets; they represent different aspects of Fed rate decision.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_39_market_1",
+    "market_id2": "comparison_39_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Market outcomes do not map as opposites; they refer to overall performance versus annual return.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_40_market_1",
+    "market_id2": "comparison_40_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1 outcome 'Yes' corresponds directly to Market 2 outcome 'Increase'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_41_market_1",
+    "market_id2": "comparison_41_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (prices increase) \u2194 Rise; No (prices do not increase) \u2194 Decrease or flat.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_42_market_1",
+    "market_id2": "comparison_42_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (drop below $70) \u2194 Below $70; No (not drop below) \u2194 $70 or above.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_43_market_1",
+    "market_id2": "comparison_43_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (reach $3000) \u2194 $3000/oz or more; No (not reach $3000) \u2194 Under $3000/oz.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_44_market_1",
+    "market_id2": "comparison_44_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (dollar strengthens) \u2194 Dollar strengthens; No (does not strengthen) \u2194 Euro strengthens or flat.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_45_market_1",
+    "market_id2": "comparison_45_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (correction will happen) \u2194 10% or more; No (correction will not happen) \u2194 Less than 10%.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_46_market_1",
+    "market_id2": "comparison_46_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Yes (Lakers make playoffs) \u2194 Yes (finish in top 10); No (Lakers do not make playoffs) \u2194 No (not in top 10).",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_47_market_1",
+    "market_id2": "comparison_47_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Yes (major tech IPO) \u2194 Yes (company go public at $10B+ valuation); No (no major tech IPO) \u2194 No (company does not go public).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_48_market_1",
+    "market_id2": "comparison_48_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (Trump nominee) \u2194 Trump; No (not Trump nominee) \u2194 Not Trump.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_49_market_1",
+    "market_id2": "comparison_49_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (net inflows) \u2194 Net inflows; No (no net inflows) \u2194 Net outflows or neutral.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_50_market_1",
+    "market_id2": "comparison_50_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Yes (sales exceed 1 million) \u2194 More than 1 million; No (sales do not exceed) \u2194 1 million or fewer.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  }
+]

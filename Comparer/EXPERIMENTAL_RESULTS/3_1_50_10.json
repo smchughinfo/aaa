@@ -1,0 +1,452 @@
+[
+  {
+    "market_id1": "comparison_1_market_1",
+    "market_id2": "comparison_1_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask about the same event at the same time, outcomes can be mapped 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_2_market_1",
+    "market_id2": "comparison_2_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets address the same weather condition at the same time, outcomes can be mapped 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_3_market_1",
+    "market_id2": "comparison_3_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "'Yankees' winning is the logical opposite of 'Yankees' losing, covers all outcomes.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_4_market_1",
+    "market_id2": "comparison_4_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets evaluate the same economic condition at the same time, outcomes can be mapped 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_5_market_1",
+    "market_id2": "comparison_5_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets evaluate the Dow Jones closing position with directly correlated outcomes.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_6_market_1",
+    "market_id2": "comparison_6_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market one states 'above $200' while market two states 'at or below $200', perfect logical opposites.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_7_market_1",
+    "market_id2": "comparison_7_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "'Raise rates' versus 'keep unchanged or lower' are exact logical opposites covering all outcomes.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_8_market_1",
+    "market_id2": "comparison_8_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "The markets evaluate different scales of hurricane events, making them uncertain.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_9_market_1",
+    "market_id2": "comparison_9_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "The events are related but not sufficiently overlapping; 'any major ruling' vs a specific ruling.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_10_market_1",
+    "market_id2": "comparison_10_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "Different measures of stock performance leading to uncertain relationships.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_11_market_1",
+    "market_id2": "comparison_11_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Tom Brady returning is specific and does not negate the possibility of other QBs returning.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_12_market_1",
+    "market_id2": "comparison_12_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "ChatGPT being an AI chatbot is a subset of all AI chatbots.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_13_market_1",
+    "market_id2": "comparison_13_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "Different time frames make comparison uncertain.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_14_market_1",
+    "market_id2": "comparison_14_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "Different time windows prevent direct comparison.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_15_market_1",
+    "market_id2": "comparison_15_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "Different time frames make comparison uncertain.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_16_market_1",
+    "market_id2": "comparison_16_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Price conditions are related but do not negate each other.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_17_market_1",
+    "market_id2": "comparison_17_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Temperature thresholds are related but don't negate each other.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_18_market_1",
+    "market_id2": "comparison_18_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Price conditions are related but do not negate each other.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_19_market_1",
+    "market_id2": "comparison_19_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "These events are not directly related to each other.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_20_market_1",
+    "market_id2": "comparison_20_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "Winning the election and running for re-election are different events.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_21_market_1",
+    "market_id2": "comparison_21_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The two markets pertain to different events (VR headset release vs Apple stock performance) with no direct relationship.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_22_market_1",
+    "market_id2": "comparison_22_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The two markets are unrelated; one is about weather and the other about cryptocurrency prices.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_23_market_1",
+    "market_id2": "comparison_23_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The two events (Lakers playoffs vs Tesla stock split) are unrelated.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_24_market_1",
+    "market_id2": "comparison_24_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Both markets relate to the Chiefs but refer to different Super Bowls (2025 vs 2026).",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_25_market_1",
+    "market_id2": "comparison_25_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "These events are related as they both involve government shutdowns but concern different years.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_26_market_1",
+    "market_id2": "comparison_26_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask about the same event regarding Microsoft acquiring Activision by a specified date.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_27_market_1",
+    "market_id2": "comparison_27_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets relate to COVID-19 vaccine requirements for travel in the US in 2025.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_28_market_1",
+    "market_id2": "comparison_28_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both relate to interest rate changes by the Federal Reserve in the same timeframe.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_29_market_1",
+    "market_id2": "comparison_29_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "The Yankees winning the World Series is a specific outcome of the general market about the 2025 winner.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_30_market_1",
+    "market_id2": "comparison_30_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The next Fed chair and Powell's potential duration are unrelated events.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_31_market_1",
+    "market_id2": "comparison_31_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Different outcomes: one is a simple win/loss, the other requires a margin of victory.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_32_market_1",
+    "market_id2": "comparison_32_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Different types of bets: one is straightforward win/loss, the other concerns point spread.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_33_market_1",
+    "market_id2": "comparison_33_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets address the same event and timeframe; outcomes are 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_34_market_1",
+    "market_id2": "comparison_34_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Phoenix is in Arizona, but Arizona includes more areas; not arbitrageable.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_35_market_1",
+    "market_id2": "comparison_35_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets refer to the same event timeframe; outcomes are logically connected.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_36_market_1",
+    "market_id2": "comparison_36_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets examine the same price point; conditions are identical.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_37_market_1",
+    "market_id2": "comparison_37_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "Not clear if incumbent status implies a run in the Democratic primary.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_38_market_1",
+    "market_id2": "comparison_38_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets discuss the likelihood of a governor (specifically Newsom) running.",
+    "correct_answer": false,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_39_market_1",
+    "market_id2": "comparison_39_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "One refers strictly to GDP growth while the other covers broader economic conditions.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_40_market_1",
+    "market_id2": "comparison_40_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "CPI and PCE measure different aspects of inflation; thus unrelated.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_41_market_1",
+    "market_id2": "comparison_41_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Both markets refer to the release of AI models, but one specifically mentions GPT-5 while the other is broader, covering any new model.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_42_market_1",
+    "market_id2": "comparison_42_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "While both are about the release of an iPhone, their timing is different as 'fall' could be after September.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_43_market_1",
+    "market_id2": "comparison_43_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "The definition of 'heavily' is subjective, making comparison uncertain.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_44_market_1",
+    "market_id2": "comparison_44_market_2",
+    "relationship": "UNCERTAIN",
+    "arbitrage_match": false,
+    "notes": "Tropical storm conditions may depend on various factors not defined in the first question.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_45_market_1",
+    "market_id2": "comparison_45_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets essentially ask if Bitcoin will be above $75,000 at the same moment in time.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_46_market_1",
+    "market_id2": "comparison_46_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "Different phrasing: One uses an exact trading day, while the other is general.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_47_market_1",
+    "market_id2": "comparison_47_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Winning Game 1 of the Finals does not imply winning the Finals series.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_48_market_1",
+    "market_id2": "comparison_48_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both questions essentially ask the same outcome regarding the series against the Red Sox.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_49_market_1",
+    "market_id2": "comparison_49_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets are identical and represent the same question.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_50_market_1",
+    "market_id2": "comparison_50_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask if the gold price will be above $2200 at the same date.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  }
+]
