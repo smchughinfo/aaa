@@ -17,7 +17,7 @@ def queue_message(event_ids):
 ################################################################################################
 
 def test_service_bus():
-    queue_message(["germs", "guns", "steel"])
+    queue_message(['134117', '134115', '134114', '134120', 'KXBTC15M-25DEC302200', 'KXETH15M-25DEC302200'])
     logging.info("TEST SB")
 
 if __name__ == "__main__":
