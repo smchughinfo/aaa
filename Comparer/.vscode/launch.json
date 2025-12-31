@@ -18,10 +18,14 @@
             "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal",
             "args": [
-                "--promptnumber","1", 
-                "--datanumber", "1",
-                "--datalimit", "2",
-                "--batchsize", "5",
+                "--promptnumber",
+                "1",
+                "--datanumber",
+                "1",
+                "--datalimit",
+                "2",
+                "--batchsize",
+                "5"
             ]
         },
         {
@@ -37,6 +41,16 @@
             "request": "launch",
             "program": "${workspaceFolder}/open_ai.py",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Attach to Python Functions",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 9091
+            },
+            "preLaunchTask": "func: host start"
         }
     ]
 }
