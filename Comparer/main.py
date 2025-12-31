@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from EXPERIMENTAL_SYSTEM_PROMPTS import *
 from EXPERIMENTAL_TEST_DATA import *
+from database import Database
 
 def get_batches(data_list, batch_size):
     """
@@ -85,6 +86,12 @@ def run_experiment(prompt_num, data_num, data_limit, batch_size):
     results = open_ai.compare_markets_batch(prompt, _data, concurrent_limit=20)
     save_results(prompt_num, data_num, data_limit, batch_size, _data_answers, results)
 
+def compare_markets(event_ids):
+    comparable_markets = None
+    with Database() as db:
+        comparable_markets = db.get_comporable_markets()
+    print(123)
+
 ################################################################################################
 ####### MAIN ###################################################################################
 ################################################################################################
@@ -98,10 +105,13 @@ def basic_comparison_test(prompt_num, data_num, data_limit):
     results = open_ai.compare_markets(prompt, _data)
     save_results(prompt_num, data_num, data_limit, _data_answers, [results])
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--promptnumber", type=str, help="the comparison prompt to send to chatgpt. found in /EXPERIMENTAL_SYSTEM_PROMTS/prompt_{--promptnumber}.py")
-parser.add_argument("--datanumber", type=str, help="the comparison data to send to chatgpt. found in /EXPERIMENTAL_TEST_DATA/data_{--datanumber}.py. Answers are found in /EXPERIMENTAL_TEST_DATA/data_answers_{--datanumber}.py")
-parser.add_argument("--datalimit", type=int, help="limit the number of comparison to this number", default=99999999)
-parser.add_argument("--batchsize", type=int, help="the number of comparisons we ask the llm to do in a single request", default=10)
-args = parser.parse_args()
-run_experiment(args.promptnumber, args.datanumber, args.datalimit, args.batchsize)
+if __name__ == "__main__":
+    compare_markets()
+else:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--promptnumber", type=str, help="the comparison prompt to send to chatgpt. found in /EXPERIMENTAL_SYSTEM_PROMTS/prompt_{--promptnumber}.py")
+    parser.add_argument("--datanumber", type=str, help="the comparison data to send to chatgpt. found in /EXPERIMENTAL_TEST_DATA/data_{--datanumber}.py. Answers are found in /EXPERIMENTAL_TEST_DATA/data_answers_{--datanumber}.py")
+    parser.add_argument("--datalimit", type=int, help="limit the number of comparison to this number", default=99999999)
+    parser.add_argument("--batchsize", type=int, help="the number of comparisons we ask the llm to do in a single request", default=10)
+    args = parser.parse_args()
+    run_experiment(args.promptnumber, args.datanumber, args.datalimit, args.batchsize)
