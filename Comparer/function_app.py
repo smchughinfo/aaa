@@ -1,7 +1,7 @@
 import azure.functions as func
 import logging
 import json
-#import main
+import main
 
 app = func.FunctionApp()
 
@@ -21,7 +21,7 @@ def process_comparison_queue(azservicebus: func.ServiceBusMessage):
     logging.info(f'Event IDs to process: {event_ids}')
 
     # run comparer
-    #main.compare_markets(event_ids)
+    main.compare_markets(event_ids)
 
     # success!
     logging.info('Message processed successfully')
