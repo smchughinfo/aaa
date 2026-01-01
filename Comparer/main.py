@@ -7,6 +7,7 @@ from EXPERIMENTAL_TEST_DATA import *
 from database import Database
 import logging
 import config
+import asyncio
 
 def get_batches(data_list, batch_size):
     """
@@ -129,9 +130,15 @@ def format_markets_for_comparison(comparable_markets: list[list[dict]]) -> list[
 async def compare_markets(event_ids):
     with Database() as db:
         comparable_markets = db.get_comporable_markets_batch(event_ids, limit=3)
+
     comparison_data = format_markets_for_comparison(comparable_markets)
+
+    # Batch comparisons into groups of 3 (optimal batch size from performance testing)
+    comparison_data_batched = get_batches(comparison_data, 3)
+
     prompt = prompts["9"]
-    results = await open_ai.compare_markets_batch_async(prompt, comparison_data, concurrent_limit=20)
+    results = await open_ai.compare_markets_batch_async(prompt, comparison_data_batched, concurrent_limit=40)
+
     save_results(9, 0, 0, 0, [], results)
 
 
