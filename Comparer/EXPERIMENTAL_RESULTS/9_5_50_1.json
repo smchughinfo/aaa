@@ -1,0 +1,182 @@
+[
+  {
+    "market_id1": "comparison_1_market_1",
+    "market_id2": "comparison_1_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Bitcoin's price at the exact same moment (end of March 2025) with outcomes that map 1:1: Yes \u2194 Above $80k, No \u2194 At or below $80k.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_2_market_1",
+    "market_id2": "comparison_2_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "The outcomes map directly: 'Packers' corresponds to 'Yes' (Packers win) and 'Bears' to 'No' (Bears win). Same event and time.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_3_market_1",
+    "market_id2": "comparison_3_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess Amazon's stock price at the same time (end of 2025) and outcomes map 1:1: Yes \u2194 Above $190, No \u2194 At or below $190.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_4_market_1",
+    "market_id2": "comparison_4_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets inquire whether the Warriors will win all games in their first-round series, mapping outcomes 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_5_market_1",
+    "market_id2": "comparison_5_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_6_market_1",
+    "market_id2": "comparison_6_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both questions refer to snowfall on the same day, with NYC and Brooklyn being equivalent for the weather prediction.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_7_market_1",
+    "market_id2": "comparison_7_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Meta's stock price at the end of 2025; the outcomes map 1:1: Yes \u2194 Above $550, No \u2194 At or below $550.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_8_market_1",
+    "market_id2": "comparison_8_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets concern the same event (Nuggets vs Suns on March 20, 2025) with outcomes that can be mapped 1:1 (Nuggets = Yes and Suns = No).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_9_market_1",
+    "market_id2": "comparison_9_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Palantir's stock price at the end of Q1 2025 with outcomes that map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_10_market_1",
+    "market_id2": "comparison_10_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask the same question with the same time frame and outcomes that map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_11_market_1",
+    "market_id2": "comparison_11_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Ethereum's price at the end of 2025, outcomes map 1:1: Yes \u2194 Above $7000, No \u2194 $7000 or below",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_12_market_1",
+    "market_id2": "comparison_12_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess the same event at the same time, outcomes map 1:1 (Yes \u2194 Above $300, No \u2194 $300 or less).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_13_market_1",
+    "market_id2": "comparison_13_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_14_market_1",
+    "market_id2": "comparison_14_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets refer to the price of Netflix stock at the same time (end of Q3 2025) and outcomes map 1:1: Yes \u2194 Above $700, No \u2194 $700 or below.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_15_market_1",
+    "market_id2": "comparison_15_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Ford's stock price at the end of 2025, mapping outcomes 1:1: Yes \u2194 Above $15, No \u2194 $15 or less.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_16_market_1",
+    "market_id2": "comparison_16_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Shopify's stock at the end of 2025. Outcomes map 1:1: Yes\u2194Above $100, No\u2194At or below $100.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_17_market_1",
+    "market_id2": "comparison_17_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Uber's stock price at the same time (end of 2025) and outcomes map 1:1: Yes \u2194 Above $80, No \u2194 $80 or lower.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_18_market_1",
+    "market_id2": "comparison_18_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Airbnb stock at the end of Q2 2025, and their outcomes map 1:1: Yes \u2194 Above $160, No \u2194 $160 or below.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_19_market_1",
+    "market_id2": "comparison_19_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets reference the price of Spotify stock at the same time (end of 2025) and outcomes can be mapped 1:1: Yes \u2194 Above $400, No \u2194 At or below $400.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_20_market_1",
+    "market_id2": "comparison_20_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Roblox's stock price at the same moment (end of Q1 2025) with outcomes that map 1:1: Yes \u2194 Above $50, No \u2194 $50 or less.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  }
+]

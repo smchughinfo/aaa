@@ -1,0 +1,452 @@
+[
+  {
+    "market_id1": "comparison_1_market_1",
+    "market_id2": "comparison_1_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Bitcoin's price at the end of 2025; outcomes map 1:1 (Yes \u2194 Above $120k, No \u2194 At or below $120k).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_2_market_1",
+    "market_id2": "comparison_2_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure the Ethereum price at the close on Dec 31, 2025. Outcomes map 1:1: [Above $6000 \u2194 Yes, Below $6000 \u2194 No].",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_3_market_1",
+    "market_id2": "comparison_3_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "The outcome of 'Chiefs' corresponds to 'Yes' (Chiefs beat 49ers) and '49ers' corresponds to 'No' (Chiefs do not beat 49ers).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_4_market_1",
+    "market_id2": "comparison_4_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask about the occurrence of snow on the same date, covering the same geographic area, thus outcomes map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_5_market_1",
+    "market_id2": "comparison_5_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask if the Lakers will win all games in their first-round series, with outcomes mapping 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_6_market_1",
+    "market_id2": "comparison_6_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "'Below $180' in market 1 is the opposite of 'At or below $180' in market 2 since both cover every outcome at market close.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_7_market_1",
+    "market_id2": "comparison_7_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets refer to the same event (SpaceX landing Starship) in the same time frame (Q1 2025) with outcomes mapping 1:1 (Yes\u2194Yes, No\u2194No).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_8_market_1",
+    "market_id2": "comparison_8_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess Q1 2025 GDP growth with direct outcome mapping: 'Above 2.5%' corresponds to 'Yes' and 'At or below 2.5%' to 'No'.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_9_market_1",
+    "market_id2": "comparison_9_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess the US unemployment rate at the exact same time (end of 2025) and outcomes map 1:1: Yes \u2194 Under 4%, No \u2194 4% or higher.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_10_market_1",
+    "market_id2": "comparison_10_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure the same event (gold price at end of 2025) with outcomes that map 1:1: Yes \u2194 Above $2800/oz and No \u2194 At or below $2800/oz.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_11_market_1",
+    "market_id2": "comparison_11_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask about the same event, and outcomes map 1:1 (Yes\u2194Yes, No\u2194No).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_12_market_1",
+    "market_id2": "comparison_12_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "The outcomes map 1:1: Celtics \u2194 Yes, Heat \u2194 No. Both pertain to the same event on the same date.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_13_market_1",
+    "market_id2": "comparison_13_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess Tesla's stock price at the exact same time, and outcomes map 1:1 (Yes \u2194 Above $400, No \u2194 At or below $400).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_14_market_1",
+    "market_id2": "comparison_14_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess the same event at the same time; outcomes map 1:1: Above 6200 \u2194 Yes, Below 6200 \u2194 No.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_15_market_1",
+    "market_id2": "comparison_15_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets ask the same question about the Yankees vs. Red Sox over the same timeframe and outcomes map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_16_market_1",
+    "market_id2": "comparison_16_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Bitcoin's value at the exact same time, with outcomes mapping 1:1: Yes\u2194Above $150k, No\u2194At or below $150k.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_17_market_1",
+    "market_id2": "comparison_17_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "The outcomes of the first market (Yes, No) are exact logical opposites of the outcomes of the second market (Raise, Hold steady or cut). If the Fed raises rates, the answer to the first market is Yes and to the second it must be Raise. Conversely, if the Fed does not raise rates (Hold steady or cut), the first market's answer is No.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_18_market_1",
+    "market_id2": "comparison_18_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets are measuring the same outcome at the same time with a 1:1 outcome mapping: Yes \u2194 Above 2.5%, No \u2194 2.5% or below.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_19_market_1",
+    "market_id2": "comparison_19_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets are measuring the oil price at the same moment in 2025 with outcomes mapping 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_20_market_1",
+    "market_id2": "comparison_20_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure Apple's stock price at the same moment (end of Q1 2025) and have outcomes that map 1:1: Yes \u2194 Above $220, No \u2194 $220 or below.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_21_market_1",
+    "market_id2": "comparison_21_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess unemployment levels in 2025, and outcomes map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_22_market_1",
+    "market_id2": "comparison_22_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess the Google stock price at the same time (end of 2025), mapping outcomes 1:1: Yes \u2194 Above $160, No \u2194 At or below $160.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_23_market_1",
+    "market_id2": "comparison_23_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets measure the same event: GDP growth exceeding 3% in Q3 2025. Their outcomes map 1:1 (Yes \u2194 More than 3%, No \u2194 3% or less).",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_24_market_1",
+    "market_id2": "comparison_24_market_2",
+    "relationship": "NEGATION",
+    "arbitrage_match": true,
+    "notes": "Market 1's 'No' corresponds to Market 2's 'Flat or decrease' and 'Yes' corresponds to 'Increase'. The two markets cover all possibilities with no overlap.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_25_market_1",
+    "market_id2": "comparison_25_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "The outcomes do not map 1:1; 'Euro strengthens or flat' does not directly correlate only to 'No' as there could be scenarios where both currencies are flat.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_26_market_1",
+    "market_id2": "comparison_26_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess Nvidia's stock price at the end of 2025, and outcomes can be mapped 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_27_market_1",
+    "market_id2": "comparison_27_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets evaluate the same event regarding gold price in H1 2025 and outcomes map 1:1.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_28_market_1",
+    "market_id2": "comparison_28_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "The outcomes in the two markets do not map directly to each other. A market correction may lead to a drawdown of 10% or more, but not all outcomes correlate directly. 'Yes' or 'No' does not directly translate to specific percentage ranges.",
+    "correct_answer": true,
+    "categorized_correctly": false
+  },
+  {
+    "market_id1": "comparison_29_market_1",
+    "market_id2": "comparison_29_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess the same event (Bitcoin's price) during the same time frame, mapping outcomes 1:1: Yes \u2194 $100k or above, No \u2194 Below $100k.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_30_market_1",
+    "market_id2": "comparison_30_market_2",
+    "relationship": "EQUIVALENT",
+    "arbitrage_match": true,
+    "notes": "Both markets assess Microsoft's stock price at the end of Q2 2025. Outcomes map 1:1: Yes \u2194 Above $450, No \u2194 $450 or less.",
+    "correct_answer": true,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_31_market_1",
+    "market_id2": "comparison_31_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "LeBron retiring is a specific instance of an NBA player retiring, but not all NBA players retiring means LeBron will retire.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_32_market_1",
+    "market_id2": "comparison_32_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "The first market specifies a release of GPT-5, while the second market refers to any new model from OpenAI. There is potential for overlap, but they are not equivalent or negations.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_33_market_1",
+    "market_id2": "comparison_33_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "The announcement of the iPhone 17 is a specific instance of a new product announcement by Apple. Therefore, the first market is a subset of the second, making them not arbitrageable.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_34_market_1",
+    "market_id2": "comparison_34_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "The outcome 'Yes' for market 1 (Cybertruck Gen 2) is contained within the outcome 'Yes' for market 2 (any new vehicle), hence this does not create an arbitrage opportunity.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_35_market_1",
+    "market_id2": "comparison_35_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Taylor Swift is a specific woman, so her winning is a subset of any woman winning.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_36_market_1",
+    "market_id2": "comparison_36_market_2",
+    "relationship": "OVERLAP",
+    "arbitrage_match": false,
+    "notes": "The outcomes relate to different events; one is specific to Amazon and Whole Foods, while the other is broader about any major grocery acquisition in 2025.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_37_market_1",
+    "market_id2": "comparison_37_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "The outcome 'SpaceX launches Starship to orbit' is a specific case of 'any rocket reaching orbit'. Thus, the first market is a subset of the second.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_38_market_1",
+    "market_id2": "comparison_38_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "The first market is about ChatGPT specifically, whereas the second market refers to any AI chatbot. This creates a subset relationship.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_39_market_1",
+    "market_id2": "comparison_39_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "Elon Musk stepping down specifically is a subset of any tech CEO stepping down. Not arbitrageable.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_40_market_1",
+    "market_id2": "comparison_40_market_2",
+    "relationship": "SUBSET",
+    "arbitrage_match": false,
+    "notes": "The Yankees winning the World Series is a specific instance of an AL East team winning. Therefore, the relation is a subset.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_41_market_1",
+    "market_id2": "comparison_41_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "These markets pertain to completely different events (weather vs cryptocurrency price).",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_42_market_1",
+    "market_id2": "comparison_42_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The two markets involve entirely different subjects (Lakers playoffs vs Tesla stock split) and have no logical connection.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_43_market_1",
+    "market_id2": "comparison_43_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The events of a government shutdown and Apple's VR headset release are not logically connected.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_44_market_1",
+    "market_id2": "comparison_44_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The events (Super Bowl being played in February 2025 and SpaceX launching to Mars in 2025) are not related to each other.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_45_market_1",
+    "market_id2": "comparison_45_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "No meaningful connection between the recession in Q2 2025 and oil prices exceeding $100 in Q3 2025.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_46_market_1",
+    "market_id2": "comparison_46_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The events pertain to different central banks (Fed and ECB) and do not have a logical correlation or opposites.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_47_market_1",
+    "market_id2": "comparison_47_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The markets are unrelated as they refer to different stocks (Amazon and Google), and their outcomes do not map 1:1.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_48_market_1",
+    "market_id2": "comparison_48_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The two markets are unrelated; one pertains to weather and the other to a sports game outcome.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_49_market_1",
+    "market_id2": "comparison_49_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "The markets refer to different teams and divisions, with no logical connection between the outcomes.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  },
+  {
+    "market_id1": "comparison_50_market_1",
+    "market_id2": "comparison_50_market_2",
+    "relationship": "UNRELATED",
+    "arbitrage_match": false,
+    "notes": "Unemployment and inflation are distinct economic indicators and do not directly negate or imply each other.",
+    "correct_answer": false,
+    "categorized_correctly": true
+  }
+]

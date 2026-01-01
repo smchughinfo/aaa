@@ -74,7 +74,7 @@ def run_experiment(prompt_num, data_num, data_limit, batch_size):
     _data_answers = get_batches(_data_answers, batch_size)
 
     # run batched comparison with parallelization
-    results = open_ai.compare_markets_batch(prompt, _data, concurrent_limit=20)
+    results = open_ai.compare_markets_batch(prompt, _data, concurrent_limit=40)
     save_results(prompt_num, data_num, data_limit, batch_size, _data_answers, results)
 
 def format_markets_for_comparison(comparable_markets: list[list[dict]]) -> list[dict]:
