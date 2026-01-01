@@ -6,6 +6,7 @@ from EXPERIMENTAL_SYSTEM_PROMPTS import *
 from EXPERIMENTAL_TEST_DATA import *
 from database import Database
 import logging
+import config
 
 def get_batches(data_list, batch_size):
     """
@@ -48,6 +49,11 @@ def format_output(comparisons, data_answers_batched):
     return formatted_results
 
 def save_results(prompt_num, data_num, data_limit, batch_size, data_answers, results):
+    # Only save to files when running in dev mode
+    if not config.on_dev:
+        logging.info(f"Skipping file write (on_dev=False): {prompt_num}_{data_num}_{data_limit}_{batch_size}.json")
+        return
+
     output_dir = Path("EXPERIMENTAL_RESULTS")
     output_dir.mkdir(exist_ok=True)  # Create dir if doesn't exist
     output_file = output_dir / f"{prompt_num}_{data_num}_{data_limit}_{batch_size}.json"
@@ -62,6 +68,8 @@ def save_results(prompt_num, data_num, data_limit, batch_size, data_answers, res
 
     with open(output_file, "w") as f:
         json.dump(formatted_output, f, indent=2)
+
+    logging.info(f"Results saved to {output_file}")
 
 def run_experiment(prompt_num, data_num, data_limit, batch_size):
     # get all data
@@ -132,8 +140,8 @@ async def compare_markets(event_ids):
 ################################################################################################
 
 def basic_comparison_test(prompt_num, data_num, data_limit):
-    print("using prompt", prompt_num)
-    print("using data", data_num)
+    logging.info(f"Using prompt {prompt_num}")
+    logging.info(f"Using data {data_num}")
     prompt = prompts[prompt_num]
     _data = data[data_num][:data_limit]
     _data_answers = data_answers[data_num][:data_limit]
@@ -145,6 +153,6 @@ if __name__ == "__main__":
     parser.add_argument("--promptnumber", type=str, help="the comparison prompt to send to chatgpt. found in /EXPERIMENTAL_SYSTEM_PROMTS/prompt_{--promptnumber}.py")
     parser.add_argument("--datanumber", type=str, help="the comparison data to send to chatgpt. found in /EXPERIMENTAL_TEST_DATA/data_{--datanumber}.py. Answers are found in /EXPERIMENTAL_TEST_DATA/data_answers_{--datanumber}.py")
     parser.add_argument("--datalimit", type=int, help="limit the number of comparison to this number", default=99999999)
-    parser.add_argument("--batchsize", type=int, help="the number of comparisons we ask the llm to do in a single request", default=10)
+    parser.add_argument("--batchsize", type=int, help="the number of comparisons we ask the llm to do in a single request", default=3)
     args = parser.parse_args()
     run_experiment(args.promptnumber, args.datanumber, args.datalimit, args.batchsize)

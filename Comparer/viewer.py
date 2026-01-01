@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import json
+import logging
 from pathlib import Path
 
 # Import experimental test data and prompts
@@ -103,6 +104,6 @@ def index():
     )
 
 if __name__ == '__main__':
-    print("🚀 Starting Market Comparison Viewer on http://127.0.0.1:7039")
-    print("⚠️  Make sure to use HTTP (not HTTPS) in your browser!")
+    logging.info("🚀 Starting Market Comparison Viewer on http://127.0.0.1:7039")
+    logging.info("⚠️  Make sure to use HTTP (not HTTPS) in your browser!")
     app.run(host='127.0.0.1', port=7039, debug=True)

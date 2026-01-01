@@ -2,6 +2,7 @@ from typing import List, Literal
 from pydantic import BaseModel
 import ast, json, pprint
 import asyncio
+import logging
 from openai import OpenAI, AsyncOpenAI
 import config
 
@@ -81,7 +82,7 @@ async def compare_markets_batch_async(prompt, test_data_list, concurrent_limit=2
     """
     async def process_batch(idx, batch_data):
         result = await compare_markets_async(prompt, batch_data)
-        print(f"Processed batch {idx+1}/{len(test_data_list)}")
+        logging.info(f"Processed batch {idx+1}/{len(test_data_list)}")
         return result
 
     results = [None] * len(test_data_list)
