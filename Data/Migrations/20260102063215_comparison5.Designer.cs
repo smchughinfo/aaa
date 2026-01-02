@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Pgvector;
@@ -12,9 +13,11 @@ using Pgvector;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20260102063215_comparison5")]
+    partial class comparison5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,17 +37,13 @@ namespace Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("market_2_id");
 
+                    b.Property<double>("Canonical_Similarity")
+                        .HasColumnType("double precision")
+                        .HasColumnName("canonical_similarity");
+
                     b.Property<bool?>("Comparable")
                         .HasColumnType("boolean")
                         .HasColumnName("comparable");
-
-                    b.Property<double>("Market_1_Canonical_Similarity")
-                        .HasColumnType("double precision")
-                        .HasColumnName("market_1_canonical_similarity");
-
-                    b.Property<double>("Market_2_Canonical_Similarity")
-                        .HasColumnType("double precision")
-                        .HasColumnName("market_2_canonical_similarity");
 
                     b.HasKey("Market_1_Id", "Market_2_Id");
 

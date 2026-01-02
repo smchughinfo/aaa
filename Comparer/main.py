@@ -49,28 +49,28 @@ def format_output(comparisons, data_answers_batched):
 
     return formatted_results
 
-def save_results(prompt_num, data_num, data_limit, batch_size, data_answers, results):
-    # Only save to files when running in dev mode
-    if not config.on_dev:
-        logging.info(f"Skipping file write (on_dev=False): {prompt_num}_{data_num}_{data_limit}_{batch_size}.json")
-        return
-
-    output_dir = Path("EXPERIMENTAL_RESULTS")
-    output_dir.mkdir(exist_ok=True)  # Create dir if doesn't exist
-    output_file = output_dir / f"{prompt_num}_{data_num}_{data_limit}_{batch_size}.json"
-
+def save_results(prompt_num, data_num, data_limit, batch_size, data_answers, results, metadata):
     # Combine all batch results into one list
     all_comparisons = []
     for batch_result in results:
         all_comparisons.extend(batch_result.comparisons)
 
-    # Format output with correct answers and accuracy
-    formatted_output = format_output(all_comparisons, data_answers)
+    # Only save to files when running in dev mode
+    if not config.on_dev:
+        # recombine please mr roboto....
+        pass
+    else:
+        output_dir = Path("EXPERIMENTAL_RESULTS")
+        output_dir.mkdir(exist_ok=True)  # Create dir if doesn't exist
+        output_file = output_dir / f"{prompt_num}_{data_num}_{data_limit}_{batch_size}.json"
 
-    with open(output_file, "w") as f:
-        json.dump(formatted_output, f, indent=2)
+        # Format output with correct answers and accuracy
+        formatted_output = format_output(all_comparisons, data_answers)
 
-    logging.info(f"Results saved to {output_file}")
+        with open(output_file, "w") as f:
+            json.dump(formatted_output, f, indent=2)
+
+        logging.info(f"Results saved to {output_file}")
 
 def run_experiment(prompt_num, data_num, data_limit, batch_size):
     # get all data
@@ -162,4 +162,6 @@ if __name__ == "__main__":
     parser.add_argument("--datalimit", type=int, help="limit the number of comparison to this number", default=99999999)
     parser.add_argument("--batchsize", type=int, help="the number of comparisons we ask the llm to do in a single request", default=3)
     args = parser.parse_args()
-    run_experiment(args.promptnumber, args.datanumber, args.datalimit, args.batchsize)
+    #run_experiment(args.promptnumber, args.datanumber, args.datalimit, args.batchsize)
+    asyncio.run(compare_markets(['134117', '134115']))
+    print("PROGRAM COMPLETE")

@@ -63,21 +63,19 @@ class Database():
                 WHERE id = %s
                 LIMIT 1
             ),
-            similiar_events AS (
+            similar_events AS (
                 SELECT
-                    ID
+                    e.ID,
+                    1 - (e.embedding <=> s.embedding) as similarity
                 FROM events e
                 CROSS JOIN source s
                 WHERE e.embedding IS NOT NULL
                 ORDER BY e.embedding <=> s.embedding
                 LIMIT %s
             )
-            SELECT id, event_id, question, outcomes
+            SELECT m.id, m.event_id, m.question, m.outcomes, se.similarity
             FROM Markets m
-            WHERE m.event_id IN (
-                SELECT id
-                FROM similiar_events
-            )
+            JOIN similar_events se ON m.event_id = se.ID
         """
 
         cursor.execute(sql, (event_id, actual_limit))
@@ -89,6 +87,7 @@ class Database():
                 "event_id": row[1],
                 "question": row[2],
                 "outcomes": row[3],
+                "canonical_similarity": row[4],
             })
 
         return markets
@@ -119,14 +118,39 @@ class Database():
         
         return text
 
+    def upsert_comparison(self, comparison):
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            INSERT INTO comparisons (market_1_id, market_2_id, comparable, canonical_similarity)
+            VALUES (%s, %s, %s, %s)
+            ON CONFLICT (market_1_id, market_2_id) DO UPDATE SET
+                comparable = EXCLUDED.comparable,
+                canonical_similarity = EXCLUDED.canonical_similarity
+        """, (
+            comparison['market_1_id'],
+            comparison['market_2_id'],
+            comparison['comparable'],
+            comparison['canonical_similarity']
+        ))
+        self.conn.commit()
+        cursor.close()
+
 ################################################################################################
 ####### MAIN ###################################################################################
 ################################################################################################
 
 def test_select():
     with Database() as db:
-        markets = db.get_comporable_markets("KXELONMARS-99")
-        logging.info(markets)
+
+        db.upsert_comparison(comparison = {
+            'market_1_id': '1078262',
+            'market_2_id': '1078263',
+            'comparable': True,
+            'canonical_similarity': 0.87
+        })
+
+        #markets = db.get_comporable_markets("KXELONMARS-99")
+        #logging.info(markets)
         logging.info(123)
 
 def test_batch_select():

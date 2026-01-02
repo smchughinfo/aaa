@@ -2,54 +2,54 @@
   {
     "market_id1": "comparison_1_market_1",
     "market_id2": "comparison_1_market_2",
-    "relationship": "OVERLAP",
+    "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Both markets assess the price of BTC in the same time frame but with different price thresholds. They do not present exact opposites or equivalent outcomes, hence not arbitrageable.",
+    "notes": "Different time windows; the outcomes are not related.",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_2_market_1",
     "market_id2": "comparison_2_market_2",
-    "relationship": "OVERLAP",
+    "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Both markets reference the same event (BTC price movement in the next 15 mins) but have different price thresholds, leading to potential overlap but no clear negation or equivalence.",
+    "notes": "Different time windows; the outcomes are not related.",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_3_market_1",
     "market_id2": "comparison_3_market_2",
-    "relationship": "OVERLAP",
+    "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Both markets measure whether BTC price will be above a threshold in the same time frame, but the thresholds are different ($88,420.50 vs $88,407.44), leading to overlapping but not equivalent outcomes.",
+    "notes": "Different time windows; the outcomes are not related.",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_4_market_1",
     "market_id2": "comparison_4_market_2",
-    "relationship": "OVERLAP",
+    "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Both markets are related, asking about ETH price movement over the same time frame, but the price thresholds are different, leading to overlapping outcomes rather than a direct equivalence or negation.",
+    "notes": "Different time windows (9:30PM-9:45PM vs 9:45PM-10:00PM).",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_5_market_1",
     "market_id2": "comparison_5_market_2",
-    "relationship": "OVERLAP",
+    "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Both markets assess the same event (ETH price movement) over the same time frame, but the price thresholds are different, causing an overlap in outcomes without a direct 1:1 mapping.",
+    "notes": "Different time windows (9:30PM-9:45PM vs 9:00PM-9:15PM).",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_6_market_1",
     "market_id2": "comparison_6_market_2",
-    "relationship": "OVERLAP",
+    "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Both markets ask about ETH price movement in the same timeframe but have different prices to beat, making them related but not directly arbitrageable.",
+    "notes": "Different time windows (9:30PM-9:45PM vs 10:30PM-10:45PM).",
     "correct_answer": null,
     "categorized_correctly": null
   }

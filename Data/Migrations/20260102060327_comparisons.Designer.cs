@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Pgvector;
@@ -12,9 +13,11 @@ using Pgvector;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20260102060327_comparisons")]
+    partial class comparisons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,35 +26,6 @@ namespace Data.Migrations
 
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "vector");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("Data.Entities.Comparisons", b =>
-                {
-                    b.Property<string>("Market_1_Id")
-                        .HasColumnType("text")
-                        .HasColumnName("market_1_id");
-
-                    b.Property<string>("Market_2_Id")
-                        .HasColumnType("text")
-                        .HasColumnName("market_2_id");
-
-                    b.Property<bool?>("Comparable")
-                        .HasColumnType("boolean")
-                        .HasColumnName("comparable");
-
-                    b.Property<double>("Market_1_Canonical_Similarity")
-                        .HasColumnType("double precision")
-                        .HasColumnName("market_1_canonical_similarity");
-
-                    b.Property<double>("Market_2_Canonical_Similarity")
-                        .HasColumnType("double precision")
-                        .HasColumnName("market_2_canonical_similarity");
-
-                    b.HasKey("Market_1_Id", "Market_2_Id");
-
-                    b.HasIndex("Market_2_Id");
-
-                    b.ToTable("comparisons");
-                });
 
             modelBuilder.Entity("Data.Entities.Event", b =>
                 {
@@ -119,25 +93,6 @@ namespace Data.Migrations
                     b.HasIndex("EventId");
 
                     b.ToTable("markets");
-                });
-
-            modelBuilder.Entity("Data.Entities.Comparisons", b =>
-                {
-                    b.HasOne("Data.Entities.Market", "Market1")
-                        .WithMany()
-                        .HasForeignKey("Market_1_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Data.Entities.Market", "Market2")
-                        .WithMany()
-                        .HasForeignKey("Market_2_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Market1");
-
-                    b.Navigation("Market2");
                 });
 
             modelBuilder.Entity("Data.Entities.Market", b =>

@@ -13,6 +13,7 @@ namespace Data
 
         public DbSet<Market> Markets { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Comparisons> Comparisons{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
