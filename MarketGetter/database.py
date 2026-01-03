@@ -135,13 +135,15 @@ class Database():
 
         events = {}
 
-        if len(markets) > 0:
-            last_event_id = markets[-1][0] # throw this one away. because of the limit we may not have selected all markets for the last event
-            for market in markets:
-                event = events.get(market[0], { "questions": [], "outcomes": [] })
-                event["questions"].append(market[1])
-                event["outcomes"].append(market[2])
-                events[market[0]] = event
+        for market in markets:
+            event = events.get(market[0], { "questions": [], "outcomes": [] })
+            event["questions"].append(market[1])
+            event["outcomes"].append(market[2])
+            events[market[0]] = event
+
+        # Only delete last event if we hit the limit (incomplete data possible)
+        if len(markets) >= limit:
+            last_event_id = markets[-1][0]
             del events[last_event_id]
 
         return events

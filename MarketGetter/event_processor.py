@@ -9,7 +9,6 @@ async def process_next_new_event_batch_async():
         unprocessed_events = db.get_unprocessed_events()
 
     if unprocessed_events:
-        #unprocessed_events =  dict(list(unprocessed_events.items())[:3])
         canonical_questions = await open_ai.get_canonical_questions_async(unprocessed_events)
         embeddings = open_ai.get_embeddings_batch(canonical_questions)
 
