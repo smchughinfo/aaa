@@ -4,7 +4,7 @@ import logging
 app = func.FunctionApp()
 
 @app.timer_trigger(schedule="0 */15 * * * *", arg_name="myTimer", run_on_startup=True)
-def market_processor(myTimer: func.TimerRequest) -> None:
+def get_markets(myTimer: func.TimerRequest) -> None:
     """
     Timer trigger that runs every 15 minutes.
     Schedule format: seconds minutes hours days months day-of-week

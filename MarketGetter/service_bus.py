@@ -17,9 +17,11 @@ def queue_message(event_ids):
 ################################################################################################
 
 def test_service_bus():
-    for i in range(0, 200):
-        queue_message(['134117', '134115', '134114', '134120', 'KXBTC15M-25DEC302200', 'KXETH15M-25DEC302200'])
+    for i in range(0, 1):
+        queue_message(['134117'])
+        #queue_message(['134117', '134115', '134114', '134120', 'KXBTC15M-25DEC302200', 'KXETH15M-25DEC302200'])
         logging.info(f"{i} TEST SB")
+    print("test_service_bus --COMPLETE--")
 
 if __name__ == "__main__":
     test_service_bus()

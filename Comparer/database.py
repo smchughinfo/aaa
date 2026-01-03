@@ -118,22 +118,39 @@ class Database():
         
         return text
 
-    def upsert_comparison(self, comparison):
+    def upsert_comparison(self, market_1_id, market_2_id, market_1_canonical_similarity,
+                          market_2_canonical_similarity, comparable):
+        """
+        Insert or update a comparison in the database.
+
+        Args:
+            market_1_id: ID of first market (reference)
+            market_2_id: ID of second market (target)
+            market_1_canonical_similarity: Similarity between market_1's question and its event's canonical question
+            market_2_canonical_similarity: Similarity between market_2's question and its event's canonical question
+            comparable: True if markets are comparable for arbitrage, False if not, None if uncertain
+        """
         cursor = self.conn.cursor()
         cursor.execute("""
-            INSERT INTO comparisons (market_1_id, market_2_id, comparable, canonical_similarity)
-            VALUES (%s, %s, %s, %s)
+            INSERT INTO comparisons (
+                market_1_id,
+                market_2_id,
+                market_1_canonical_similarity,
+                market_2_canonical_similarity,
+                comparable
+            )
+            VALUES (%s, %s, %s, %s, %s)
             ON CONFLICT (market_1_id, market_2_id) DO UPDATE SET
-                comparable = EXCLUDED.comparable,
-                canonical_similarity = EXCLUDED.canonical_similarity
+                market_1_canonical_similarity = EXCLUDED.market_1_canonical_similarity,
+                market_2_canonical_similarity = EXCLUDED.market_2_canonical_similarity,
+                comparable = EXCLUDED.comparable
         """, (
-            comparison['market_1_id'],
-            comparison['market_2_id'],
-            comparison['comparable'],
-            comparison['canonical_similarity']
+            market_1_id,
+            market_2_id,
+            market_1_canonical_similarity,
+            market_2_canonical_similarity,
+            comparable
         ))
-        self.conn.commit()
-        cursor.close()
 
 ################################################################################################
 ####### MAIN ###################################################################################
@@ -142,12 +159,13 @@ class Database():
 def test_select():
     with Database() as db:
 
-        db.upsert_comparison(comparison = {
-            'market_1_id': '1078262',
-            'market_2_id': '1078263',
-            'comparable': True,
-            'canonical_similarity': 0.87
-        })
+        db.upsert_comparison(
+            market_1_id='1078262',
+            market_2_id='1078263',
+            market_1_canonical_similarity=1.0,
+            market_2_canonical_similarity=0.87,
+            comparable=True
+        )
 
         #markets = db.get_comporable_markets("KXELONMARS-99")
         #logging.info(markets)

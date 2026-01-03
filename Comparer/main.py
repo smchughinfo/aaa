@@ -49,17 +49,44 @@ def format_output(comparisons, data_answers_batched):
 
     return formatted_results
 
-def save_results(prompt_num, data_num, data_limit, batch_size, data_answers, results, metadata):
+def save_results(prompt_num, data_num, data_limit, batch_size, data_answers, results, metadata=None):
     # Combine all batch results into one list
     all_comparisons = []
     for batch_result in results:
         all_comparisons.extend(batch_result.comparisons)
 
-    # Only save to files when running in dev mode
-    if not config.on_dev:
-        # recombine please mr roboto....
-        pass
-    else:
+    # Save to database when running in production mode
+    if not config.on_dev and metadata is not None:
+        # Recombine LLM results with metadata and save to database
+        with Database() as db:
+            for i, comparison in enumerate(all_comparisons):
+                if i >= len(metadata):
+                    logging.warning(f"Metadata missing for comparison index {i}, skipping")
+                    continue
+
+                meta = metadata[i]
+
+                # Map relationship to comparable bool
+                relationship = comparison.relationship
+                if relationship in ("EQUIVALENT", "NEGATION"):
+                    comparable = True
+                elif relationship == "UNCERTAIN":
+                    comparable = None
+                else:  # SUBSET, SUPERSET, OVERLAP, UNRELATED
+                    comparable = False
+
+                db.upsert_comparison(
+                    market_1_id=meta['market_1_id'],
+                    market_2_id=meta['market_2_id'],
+                    market_1_canonical_similarity=meta['market_1_canonical_similarity'],
+                    market_2_canonical_similarity=meta['market_2_canonical_similarity'],
+                    comparable=comparable
+                )
+
+        logging.info(f"Saved {len(all_comparisons)} comparisons to database")
+
+    # Save to files when running in dev mode
+    elif config.on_dev:
         output_dir = Path("EXPERIMENTAL_RESULTS")
         output_dir.mkdir(exist_ok=True)  # Create dir if doesn't exist
         output_file = output_dir / f"{prompt_num}_{data_num}_{data_limit}_{batch_size}.json"
@@ -86,8 +113,17 @@ def run_experiment(prompt_num, data_num, data_limit, batch_size):
     results = open_ai.compare_markets_batch(prompt, _data, concurrent_limit=40)
     save_results(prompt_num, data_num, data_limit, batch_size, _data_answers, results)
 
-def format_markets_for_comparison(comparable_markets: list[list[dict]]) -> list[dict]:
+def format_markets_for_comparison(comparable_markets: list[list[dict]]) -> tuple[list[dict], list[dict]]:
+    """
+    Formats markets for LLM comparison.
+
+    Returns:
+        tuple of (comparisons, metadata):
+        - comparisons: List of comparison objects for LLM
+        - metadata: List of dicts with market IDs and canonical similarities
+    """
     comparisons = []
+    metadata = []
     comparison_counter = 1
 
     for event_group in comparable_markets:
@@ -123,15 +159,24 @@ def format_markets_for_comparison(comparable_markets: list[list[dict]]) -> list[
                 }
             }
             comparisons.append(comparison)
+
+            # Store metadata for this comparison
+            metadata.append({
+                "market_1_id": reference['id'],
+                "market_2_id": target['id'],
+                "market_1_canonical_similarity": reference.get('canonical_similarity', 1.0),
+                "market_2_canonical_similarity": target.get('canonical_similarity', 0.0)
+            })
+
             comparison_counter += 1
 
-    return comparisons
+    return comparisons, metadata
 
 async def compare_markets(event_ids):
     with Database() as db:
         comparable_markets = db.get_comporable_markets_batch(event_ids, limit=3)
 
-    comparison_data = format_markets_for_comparison(comparable_markets)
+    comparison_data, metadata = format_markets_for_comparison(comparable_markets)
 
     # Batch comparisons into groups of 3 (optimal batch size from performance testing)
     comparison_data_batched = get_batches(comparison_data, 3)
@@ -139,7 +184,7 @@ async def compare_markets(event_ids):
     prompt = prompts["9"]
     results = await open_ai.compare_markets_batch_async(prompt, comparison_data_batched, concurrent_limit=40)
 
-    save_results(9, 0, 0, 0, [], results)
+    save_results(9, 0, 0, 0, [], results, metadata)
 
 
 ################################################################################################

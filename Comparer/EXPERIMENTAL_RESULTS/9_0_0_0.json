@@ -2,27 +2,27 @@
   {
     "market_id1": "comparison_1_market_1",
     "market_id2": "comparison_1_market_2",
-    "relationship": "UNRELATED",
+    "relationship": "OVERLAP",
     "arbitrage_match": false,
-    "notes": "Different time windows; the outcomes are not related.",
+    "notes": "Both markets refer to XRP's movement but are for overlapping time windows.",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_2_market_1",
     "market_id2": "comparison_2_market_2",
-    "relationship": "UNRELATED",
+    "relationship": "OVERLAP",
     "arbitrage_match": false,
-    "notes": "Different time windows; the outcomes are not related.",
+    "notes": "Both markets refer to XRP but have different time windows which overlap.",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_3_market_1",
     "market_id2": "comparison_3_market_2",
-    "relationship": "UNRELATED",
+    "relationship": "OVERLAP",
     "arbitrage_match": false,
-    "notes": "Different time windows; the outcomes are not related.",
+    "notes": "Both markets refer to XRP's movement but are for non-overlapping time windows.",
     "correct_answer": null,
     "categorized_correctly": null
   },
@@ -31,16 +31,16 @@
     "market_id2": "comparison_4_market_2",
     "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Different time windows (9:30PM-9:45PM vs 9:45PM-10:00PM).",
+    "notes": "Different time windows (9:30PM-9:45PM ET vs 9:45PM-10:00PM ET).",
     "correct_answer": null,
     "categorized_correctly": null
   },
   {
     "market_id1": "comparison_5_market_1",
     "market_id2": "comparison_5_market_2",
-    "relationship": "UNRELATED",
+    "relationship": "UNCERTAIN",
     "arbitrage_match": false,
-    "notes": "Different time windows (9:30PM-9:45PM vs 9:00PM-9:15PM).",
+    "notes": "Different time windows (9:30PM-9:45PM ET vs 9:00PM-9:15PM ET). Possible overlap but not defined outcomes.",
     "correct_answer": null,
     "categorized_correctly": null
   },
@@ -49,7 +49,7 @@
     "market_id2": "comparison_6_market_2",
     "relationship": "UNRELATED",
     "arbitrage_match": false,
-    "notes": "Different time windows (9:30PM-9:45PM vs 10:30PM-10:45PM).",
+    "notes": "Different time windows (9:30PM-9:45PM ET vs 10:30PM-10:45PM ET).",
     "correct_answer": null,
     "categorized_correctly": null
   }
